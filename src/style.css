@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* 1. DEFINE PALETTE VARIABLES */
+:root {
+  /* Blue Grey - Great for backgrounds and secondary text */
+  --blue-grey-900: #102A43;
+  --blue-grey-800: #243B53;
+  --blue-grey-700: #334E68;
+  --blue-grey-600: #486581;
+  --blue-grey-500: #627D98;
+  --blue-grey-400: #829AB1;
+  --blue-grey-300: #9FB3C8;
+  --blue-grey-200: #BCCCDC;
+  --blue-grey-100: #D9E2EC;
+  --blue-grey-50:  #F0F4F8;
+
+  /* Light Blue (Vivid) - Primary Action Colors */
+  --blue-900: #035388;
+  --blue-800: #0B69A3;
+  --blue-700: #127FBF;
+  --blue-600: #1992D4;
+  --blue-500: #2BB0ED;
+  --blue-400: #40C3F7;
+  --blue-300: #5ED0FA;
+  --blue-200: #81DEFD;
+  --blue-100: #B3ECFF;
+  --blue-50:  #E3F8FF;
+
+  /* Cyan - Modern Accents */
+  --cyan-900: #044E54;
+  --cyan-800: #0A6C74;
+  --cyan-700: #0E7C86;
+  --cyan-600: #14919B;
+  --cyan-500: #2CB1BC;
+  --cyan-400: #38BEC9;
+  --cyan-300: #54D1DB;
+  --cyan-200: #87EAF2;
+  --cyan-100: #BEF8FD;
+  --cyan-50:  #E0FCFF;
+
+  /* Teal - Positive trends / Success states */
+  --teal-900: #014D40;
+  --teal-800: #0C6B58;
+  --teal-700: #147D64;
+  --teal-600: #199473;
+  --teal-500: #27AB83;
+  --teal-400: #3EBD93;
+  --teal-300: #65D6AD;
+  --teal-200: #8EEDC7;
+  --teal-100: #C6F7E2;
+  --teal-50:  #EFFCF6;
+
+  /* Red (Vivid) - Errors or Alerts */
+  --red-900: #610316;
+  --red-800: #8A041A;
+  --red-700: #AB091E;
+  --red-600: #CF1124;
+  --red-500: #E12D39;
+  --red-400: #EF4E4E;
+  --red-300: #F86A6A;
+  --red-200: #FF9B9B;
+  --red-100: #FFBDBD;
+  --red-50:  #FFE3E3;
+}
+
+/* 2. BASE STYLES */
+body {
+  background-color: var(--blue-grey-50);
+  color: var(--blue-grey-900);
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  color: var(--blue-grey-800);
+}
+
+a {
+  color: var(--blue-700);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--blue-900);
+}
+
