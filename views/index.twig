@@ -1,0 +1,18 @@
+{% extends "base.twig" %}
+{% block content %}
+<main class="max-w-4xl mx-auto py-20 px-6">
+    <h1 class="text-5xl font-black mb-12 tracking-tight">Latest Updates</h1>
+    <div class="grid gap-8">
+        {% for post in posts %}
+            <article class="p-8 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                <h2 class="text-2xl font-bold text-blue-600 hover:underline">
+                    <a href="{{ post.link }}">{{ post.title }}</a>
+                </h2>
+                <div class="mt-4 text-slate-600 leading-relaxed">
+                    {{ post.excerpt }}
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

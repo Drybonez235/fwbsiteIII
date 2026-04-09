@@ -1,0 +1,19 @@
+{
+    "name": "jonathanlewis/fwbsite-iii",
+    "description": "A theme for the fwbsite wordpress install",
+    "type": "plugin",
+    "autoload": {
+        "psr-4": {
+            "Jonathanlewis\\FwbsiteIii\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jonathan Lewis",
+            "email": "jonathan.lewis@welch.edu"
+        }
+    ],
+    "require": {
+        "timber/timber": "^2.3"
+    }
+}
