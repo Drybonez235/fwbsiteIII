@@ -1,18 +1,22 @@
 {% extends "base.twig" %}
+
 {% block content %}
-<main class="max-w-4xl mx-auto py-20 px-6">
-    <h1 class="text-5xl font-black mb-12 tracking-tight">Latest Updates</h1>
-    <div class="grid gap-8">
+<main class="max-w-4xl mx-auto py-12 px-6">
+    {% if posts %}
         {% for post in posts %}
-            <article class="p-8 bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
-                <h2 class="text-2xl font-bold text-blue-600 hover:underline">
-                    <a href="{{ post.link }}">{{ post.title }}</a>
+            <article class="mb-12">
+                <h2 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">
+                    <a href="{{ post.link }}" class="hover:text-blue-600 transition-colors">
+                        {{ post.title }}
+                    </a>
                 </h2>
-                <div class="mt-4 text-slate-600 leading-relaxed">
-                    {{ post.excerpt }}
+                <div class="prose prose-slate max-w-none">
+                    {{ post.content }}
                 </div>
             </article>
         {% endfor %}
-    </div>
+    {% else %}
+        <p class="text-slate-500 italic">No content found.</p>
+    {% endif %}
 </main>
 {% endblock %}

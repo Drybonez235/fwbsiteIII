@@ -6,11 +6,11 @@
   {# --- Hero Section --- #}
   <section class="relative">
     <div class="h-[500px] bg-cover bg-center flex items-center justify-center relative" 
-         style="background-image: url('{{ theme.church_image }}');">
+         style="background-image: url('{{ function('get_theme_mod', 'church_image') }}');">
       <div class="absolute inset-0 bg-black/40"></div> {# Overlay #}
       <div class="relative z-10 text-center text-white px-6">
         <h1 class="text-5xl md:text-7xl font-black tracking-tight drop-shadow-md">
-          {{ theme.church_name }}
+          {{ function('get_theme_mod', 'church_name', 'My Church') }}
         </h1>
       </div>
     </div>
@@ -23,8 +23,8 @@
           <p class="font-medium">Worship: <span class="font-bold text-blue-200">{{ function('get_theme_mod', 'sunday_service_time', '11:00 am') }}</span></p>
         </div>
         <div class="text-center md:text-right">
-          <p class="text-lg font-bold">{{ theme.church_phone }}</p>
-          <p class="text-sm opacity-80">{{ theme.church_address }}</p>
+          <p class="text-lg font-bold">{{ function('get_theme_mod', 'church_phone', '(555) 123-4567') }}</p>
+          <p class="text-sm opacity-80">{{ function('get_theme_mod', 'church_address', '123 Main Street') }}</p>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         
         <div class="relative p-8 md:p-12 text-white w-full">
-          <h2 class="text-sm font-bold uppercase tracking-widest text-blue-400 mb-2">Worship at {{ theme.church_name }}</h2>
+          <h2 class="text-sm font-bold uppercase tracking-widest text-blue-400 mb-2">Worship at {{ function('get_theme_mod', 'church_name', 'My Church') }}</h2>
           <h3 class="text-4xl font-black mb-4">Sunday Worship</h3>
           <span class="inline-block bg-blue-600 px-4 py-1 rounded text-2xl font-bold mb-4">
             {{ function('get_theme_mod', 'sunday_service_time', '11:00 AM') }}
