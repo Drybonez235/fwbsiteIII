@@ -43,10 +43,58 @@ add_action('wp_enqueue_scripts', function() {
 });
 
 // 5. GLOBAL CONTEXT (The Secret Sauce)
-// This makes your Menu and Logo available on EVERY page automatically.
 add_filter('timber/context', function( $context ) {
     $context['menu'] = Timber::get_menu('primary');
     $context['site'] = new Timber\Site();
     $context['custom_logo_url'] = wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full');
+
+    // Create the 'theme' object to hold all your sub-function data
+    $context['theme'] = [
+        // Church Description Section
+        'name'               => get_theme_mod('church_name', 'My Church'),
+        'image'              => get_theme_mod('church_image'),
+        'address'            => get_theme_mod('church_address'),
+        'location'           => get_theme_mod('church_location'),
+        'email'              => get_theme_mod('church_email'),
+        'phone'              => get_theme_mod('church_phone'),
+        'mission_statement'  => get_theme_mod('homepage_mission_statement'),
+        'mission_subtext'    => get_theme_mod('mission_subtext'),
+
+        // Service Information Section
+        'service' => [
+            'message'             => get_theme_mod('service_message'),
+            'image'               => get_theme_mod('service_image'),
+            'sunday_school'       => get_theme_mod('sunday_school_time'),
+            'sunday_school_desc'  => get_theme_mod('sunday_school_description'),
+            'sunday_morning'      => get_theme_mod('sunday_service_time'),
+            'sunday_morning_desc' => get_theme_mod('sunday_service_description'),
+            'night_enabled'       => get_theme_mod('enable_sunday_night'),
+            'night_time'          => get_theme_mod('sunday_night_time'),
+            'wednesday_enabled'   => get_theme_mod('enable_wednesday_night'),
+            'wednesday_time'      => get_theme_mod('wednesday_night_time'),
+        ],
+
+        // Pastor Section
+        'pastor' => [
+            'name'  => get_theme_mod('pastor_name'),
+            'bio'   => get_theme_mod('pastor_bio'),
+            'image' => get_theme_mod('pastor_image'),
+        ],
+
+        // Ministries (Grouped as an array for easier looping)
+        'ministries' => [
+            ['name' => get_theme_mod('ministry1_name'), 'desc' => get_theme_mod('ministry1_description'), 'enabled' => true],
+            ['name' => get_theme_mod('ministry2_name'), 'desc' => get_theme_mod('ministry2_description'), 'enabled' => get_theme_mod('enable_ministry2')],
+            ['name' => get_theme_mod('ministry3_name'), 'desc' => get_theme_mod('ministry3_description'), 'enabled' => get_theme_mod('enable_ministry3')],
+        ],
+
+        // Social Media
+        'social' => [
+            'facebook'  => ['url' => get_theme_mod('church_facebook'),  'enabled' => get_theme_mod('church_facebook_enabled')],
+            'instagram' => ['url' => get_theme_mod('church_instagram'), 'enabled' => get_theme_mod('church_instagram_enabled')],
+            'youtube'   => ['url' => get_theme_mod('church_youtube'),   'enabled' => get_theme_mod('church_youtube_enabled')],
+        ]
+    ];
+
     return $context;
 });
