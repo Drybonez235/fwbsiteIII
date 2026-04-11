@@ -48,6 +48,36 @@ add_filter('timber/context', function( $context ) {
     $context['site'] = new Timber\Site();
     $context['custom_logo_url'] = wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full');
 
+     //belife page data.
+
+    // Prepare dynamic individual beliefs array
+    $belief_keys = [
+        'the_bible', 'the_godhead', 'jesus_christ', 'the_holy_spirit', 
+        'human_sinfulness', 'salvation_doctrine', 'salvation_terms', 
+        'freedom_of_will', 'salvation_free', 'perseverance', 
+        'eternal_future_destiny', 'the_church_universal', 
+        'gospel_ordinances', 'tithing', 'the_christian_sabbath'
+    ];
+    
+    $individual_beliefs = [];
+    foreach ($belief_keys as $key) {
+        $individual_beliefs[] = [
+            'id'      => $key,
+            'content' => get_theme_mod('fwbsite_belief_content_' . $key)
+        ];
+    }
+
+    // Prepare Partnerships array
+    $affiliations = [];
+    for ( $i = 1; $i <= 10; $i++ ) {
+        if ( get_theme_mod("fwbsite_affiliation_{$i}_display") ) {
+            $affiliations[] = [
+                'name' => get_theme_mod("fwbsite_affiliation_{$i}_name"),
+                'desc' => get_theme_mod("fwbsite_affiliation_{$i}_description"),
+            ];
+        }
+    }
+
     // Create the 'theme' object to hold all your sub-function data
     $context['theme'] = [
         // Church Description Section
@@ -113,36 +143,6 @@ add_filter('timber/context', function( $context ) {
             ]
         ],
     ];
-
-    //belife page data.
-
-    // Prepare dynamic individual beliefs array
-    $belief_keys = [
-        'the_bible', 'the_godhead', 'jesus_christ', 'the_holy_spirit', 
-        'human_sinfulness', 'salvation_doctrine', 'salvation_terms', 
-        'freedom_of_will', 'salvation_free', 'perseverance', 
-        'eternal_future_destiny', 'the_church_universal', 
-        'gospel_ordinances', 'tithing', 'the_christian_sabbath'
-    ];
-    
-    $individual_beliefs = [];
-    foreach ($belief_keys as $key) {
-        $individual_beliefs[] = [
-            'id'      => $key,
-            'content' => get_theme_mod('fwbsite_belief_content_' . $key)
-        ];
-    }
-
-    // Prepare Partnerships array
-    $affiliations = [];
-    for ( $i = 1; $i <= 10; $i++ ) {
-        if ( get_theme_mod("fwbsite_affiliation_{$i}_display") ) {
-            $affiliations[] = [
-                'name' => get_theme_mod("fwbsite_affiliation_{$i}_name"),
-                'desc' => get_theme_mod("fwbsite_affiliation_{$i}_description"),
-            ];
-        }
-    }
 
     return $context;
 });
