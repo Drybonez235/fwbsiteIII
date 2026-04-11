@@ -1,0 +1,46 @@
+{# Header Section #}
+<header class="relative h-64 flex items-center justify-center bg-gray-900">
+    {% if theme.beliefs.bg_image %}
+        <img src="{{ theme.beliefs.bg_image }}" class="absolute inset-0 size-full object-cover opacity-50" alt="{{ theme.beliefs.title }}">
+    {% endif %}
+    <h1 class="relative text-white text-5xl font-bold text-shadow-lg">{{ theme.beliefs.title }}</h1>
+</header>
+
+{# Intro #}
+<section class="max-w-3xl mx-auto py-12 px-4 text-center">
+    <p class="text-lg/8 text-gray-700">{{ theme.beliefs.intro }}</p>
+</section>
+
+{# Loop through Beliefs #}
+<section class="max-w-5xl mx-auto py-12 grid gap-8 md:grid-cols-2">
+    {% for belief in theme.beliefs.items %}
+        <div class="p-6 bg-white shadow-sm rounded-xl border border-gray-100">
+            <p class="text-gray-600">{{ belief.content }}</p>
+        </div>
+    {% endfor %}
+</section>
+
+{# Church Covenant #}
+{% if theme.beliefs.covenant.enabled %}
+    <section class="bg-gray-50 py-16">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">{{ theme.beliefs.covenant.title }}</h2>
+            <div class="prose mx-auto">{{ theme.beliefs.covenant.content|wpautop }}</div>
+        </div>
+    </section>
+{% endif %}
+
+{# Partnerships #}
+{% if theme.beliefs.partnerships.enabled %}
+    <section class="py-16">
+        <h2 class="text-center text-2xl font-bold mb-10">{{ theme.beliefs.partnerships.title }}</h2>
+        <div class="flex flex-wrap justify-center gap-6">
+            {% for partner in theme.beliefs.partnerships.affiliations %}
+                <div class="p-4 border border-gray-200 rounded-sm">
+                    <h3 class="font-bold">{{ partner.name }}</h3>
+                    <p class="text-sm/6">{{ partner.desc }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endif %}
