@@ -1,0 +1,35 @@
+<header class="flex flex-col md:flex-row items-center justify-between p-4 lg:p-6 border-b border-black/10">
+    
+    {# Logo and Church Name Wrapper #}
+    <div class="flex items-center gap-4">
+        <div class="site-logo">
+            {% if custom_logo_url %}
+                <a href="{{ site.url }}">
+                    <img src="{{ custom_logo_url }}" alt="{{ theme.name }}" class="h-12 w-auto">
+                </a>
+            {% else %}
+                <h1 class="text-xl/7 font-bold">
+                    <a href="{{ site.url }}">{{ theme.name }}</a>
+                </h1>
+            {% endif %}
+        </div>
+
+        <h2 class="text-lg/6 font-semibold text-gray-800 dark:text-gray-200">
+            {{ theme.name }}
+        </h2>
+    </div>
+
+    {# Primary Navigation #}
+    <nav class="mt-4 md:mt-0">
+        <ul class="flex gap-6 list-none">
+            {% for item in menu.items %}
+                <li class="{{ item.classes | join(' ') }}">
+                    <a href="{{ item.link }}" class="text-base/6 font-medium hover:text-blue-600 transition-colors">
+                        {{ item.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+</header>
