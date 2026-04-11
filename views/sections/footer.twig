@@ -1,80 +1,83 @@
-<footer class="bg-slate-50 border-t border-slate-200 py-12">
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-slate-700">
-
-        {# 1. Church Branding #}
-        <div class="flex flex-col gap-4">
-            <div class="footer-branding">
-                {% if custom_logo_url %}
-                    <a href="{{ site.url }}">
-                        <img src="{{ custom_logo_url }}" alt="{{ theme.name }}" class="h-16 w-auto">
-                    </a>
-                {% else %}
-                    <h1 class="text-2xl/8 font-bold text-slate-900">
-                        <a href="{{ site.url }}">{{ theme.name }}</a>
-                    </h1>
-                {% endif %}
-            </div>
-            <p class="text-sm/6 text-slate-600 italic">
-                {{ theme.mission_statement }}
-            </p>
-        </div>
-
-        {# 2. Service Information #}
-        <div class="flex flex-col gap-2 text-base/7">
-            <h3 class="font-bold text-slate-900 mb-2">Service Times</h3>
-            <p>Sunday School: <span class="font-medium text-slate-900">{{ theme.service.sunday_school }}</span></p>
-            <p>Sunday Service: <span class="font-medium text-slate-900">{{ theme.service.sunday_morning }}</span></p>
-
-            {% if theme.service.night_enabled %}
-                <p>Sunday Night: <span class="font-medium text-slate-900">{{ theme.service.night_time }}</span></p>
-            {% endif %}
-
-            {% if theme.service.wednesday_enabled %}
-                <p>Wednesday Night: <span class="font-medium text-slate-900">{{ theme.service.wednesday_time }}</span></p>
-            {% endif %}
-        </div>
-
-        {# 3. Contact & Social #}
-        <div class="flex flex-col gap-6">
-            <div class="text-base/7">
-                <h3 class="font-bold text-slate-900 mb-2">Contact Us</h3>
-                <p>
-                    <a href="tel:{{ theme.phone }}" class="hover:text-blue-600 transition-colors font-medium">
-                        {{ theme.phone }}
-                    </a>
-                </p>
-                <p>
-                    <a href="mailto:{{ theme.email }}" class="hover:text-blue-600 transition-colors font-medium">
-                        {{ theme.email }}
-                    </a>
-                </p>
-                <address class="not-italic mt-2 text-slate-600">
-                    {{ theme.address }}
-                </address>
+<footer class="bg-slate-50 border-t border-slate-200 py-16">
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-slate-600">
+            
+            {# Column 1: Contact Info #}
+            <div class="flex flex-col gap-4">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-900">Connect</h3>
+                <div class="text-sm/6">
+                    <p class="font-medium text-slate-900">{{ theme.phone }}</p>
+                    <p class="hover:text-blue-600 transition-colors">
+                        <a href="mailto:{{ theme.email }}">{{ theme.email }}</a>
+                    </p>
+                    <address class="not-italic mt-4 text-slate-500">
+                        {{ theme.address|nl2br }}
+                    </address>
+                </div>
             </div>
 
-            {# Social Media Icons #}
-            <div class="flex gap-4">
-                {% for platform, data in theme.social %}
-                    {% if data.enabled and data.url %}
-                        <a href="{{ data.url }}" 
-                           target="_blank" 
-                           rel="noopener" 
-                           class="text-slate-500 hover:text-blue-600 transition-colors"
-                           aria-label="{{ platform | capitalize }}">
-                            
-                            {% if platform == 'facebook' %}
-                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.494v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.505 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z" /></svg>
-                            {% elseif platform == 'instagram' %}
-                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.262 2.242 1.324 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.324 3.608-.975.975-2.242 1.262-3.608 1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.324-3.608.975-.975 2.242-1.262 3.608-1.324C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.773.13 4.638.428 3.678 1.388c-.96.96-1.258 2.095-1.316 3.374C2.014 5.04 2 5.449 2 8.708v6.584c0 3.259.014 3.668.072 4.948.058 1.279.356 2.414 1.316 3.374.96.96 2.095 1.258 3.374 1.316 1.28.058 1.689.072 4.948.072s3.668-.014 4.948-.072c1.279-.058 2.414-.356 3.374-1.316.96-.96 1.258-2.095 1.316-3.374.058-1.28.072-1.689.072-4.948V8.708c0-3.259-.014-3.668-.072-4.948-.058-1.279-.356-2.414-1.316-3.374-.96-.96-2.095-1.258-3.374-1.316C15.668.014 15.259 0 12 0z" /><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zM18.406 4.594a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
-                            {% elseif platform == 'youtube' %}
-                                <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.974 2.974 0 00-2.09-2.106C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.408.58a2.974 2.974 0 00-2.09 2.106C0 8.1 0 12 0 12s0 3.9.502 5.814a2.974 2.974 0 002.09 2.106C4.495 20.5 12 20.5 12 20.5s7.505 0 9.408-.58a2.974 2.974 0 002.09-2.106C24 15.9 24 12 24 12s0-3.9-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z" /></svg>
-                            {% endif %}
-
-                        </a>
+            {# Column 2: Service Schedule (Cleaned up) #}
+            <div class="flex flex-col gap-4">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-900">Schedule</h3>
+                <dl class="text-sm/6 flex flex-col gap-2">
+                    <div class="flex justify-between border-b border-slate-200 pb-1">
+                        <dt>Sunday School</dt>
+                        <dd class="font-bold text-slate-900">{{ theme.service.sunday_school }}</dd>
+                    </div>
+                    <div class="flex justify-between border-b border-slate-200 pb-1">
+                        <dt>Morning Worship</dt>
+                        <dd class="font-bold text-slate-900">{{ theme.service.sunday_morning }}</dd>
+                    </div>
+                    {% if theme.service.night_enabled %}
+                    <div class="flex justify-between border-b border-slate-200 pb-1">
+                        <dt>Evening Service</dt>
+                        <dd class="font-bold text-slate-900">{{ theme.service.night_time }}</dd>
+                    </div>
                     {% endif %}
-                {% endfor %}
+                    {% if theme.service.wednesday_enabled %}
+                    <div class="flex justify-between border-b border-slate-200 pb-1">
+                        <dt>Midweek</dt>
+                        <dd class="font-bold text-slate-900">{{ theme.service.wednesday_time }}</dd>
+                    </div>
+                    {% endif %}
+                </dl>
             </div>
+
+            {# Column 3: Social Media #}
+            <div class="flex flex-col gap-4">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-900">Follow Us</h3>
+                <div class="flex gap-5">
+                    {% for platform, data in theme.social %}
+                        {% if data.enabled and data.url %}
+                            <a href="{{ data.url }}" 
+                               target="_blank" 
+                               rel="noopener" 
+                               class="text-slate-900 hover:text-blue-600 transition-transform hover:-translate-y-1"
+                               aria-label="{{ platform | capitalize }}">
+                                
+                                {% if platform == 'facebook' %}
+                                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.494v-9.294H9.691v-3.622h3.129V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.796.143v3.24l-1.918.001c-1.505 0-1.796.716-1.796 1.765v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z" /></svg>
+                                {% elseif platform == 'instagram' %}
+                                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.262 2.242 1.324 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.324 3.608-.975.975-2.242 1.262-3.608 1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.324-3.608.975-.975 2.242-1.262 3.608-1.324C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.773.13 4.638.428 3.678 1.388c-.96.96-1.258 2.095-1.316 3.374C2.014 5.04 2 5.449 2 8.708v6.584c0 3.259.014 3.668.072 4.948.058 1.279.356 2.414 1.316 3.374.96.96 2.095 1.258 3.374 1.316 1.28.058 1.689.072 4.948.072s3.668-.014 4.948-.072c1.279-.058 2.414-.356 3.374-1.316.96-.96 1.258-2.095 1.316-3.374.058-1.28.072-1.689.072-4.948V8.708c0-3.259-.014-3.668-.072-4.948-.058-1.279-.356-2.414-1.316-3.374-.96-.96-2.095-1.258-3.374-1.316C15.668.014 15.259 0 12 0z" /><path d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zM18.406 4.594a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+                                {% elseif platform == 'youtube' %}
+                                    <svg class="size-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a2.974 2.974 0 00-2.09-2.106C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.408.58a2.974 2.974 0 00-2.09 2.106C0 8.1 0 12 0 12s0 3.9.502 5.814a2.974 2.974 0 002.09 2.106C4.495 20.5 12 20.5 12 20.5s7.505 0 9.408-.58a2.974 2.974 0 002.09-2.106C24 15.9 24 12 24 12s0-3.9-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z" /></svg>
+                                {% endif %}
+
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {# Column 4: Branding/Copyright (Simplified) #}
+            <div class="flex flex-col gap-4">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-900">About</h3>
+                <p class="text-sm/6 italic text-slate-500">
+                    &copy; {{ "now"|date("Y") }} {{ theme.name }}. <br>
+                    Serving our community with grace and truth.
+                </p>
+            </div>
+
         </div>
     </div>
 </footer>
