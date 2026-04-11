@@ -1,5 +1,3 @@
-<?php get_header(); ?>
-
 <?php
 /**
  * Template Name: Beliefs Page
