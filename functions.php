@@ -94,7 +94,25 @@ add_filter('timber/context', function( $context ) {
             'instagram' => ['url' => get_theme_mod('church_instagram'), 'enabled' => get_theme_mod('church_instagram_enabled')],
             'youtube'   => ['url' => get_theme_mod('church_youtube'),   'enabled' => get_theme_mod('church_youtube_enabled')],
         ]
-    
+
+        // Beliefs Page Data
+        'beliefs' => [
+            'bg_image'    => get_theme_mod('fwbsite_beliefs_page_background_image'),
+            'title'       => get_theme_mod('fwbsite_beliefs_page_main_title', 'Our Beliefs'),
+            'intro'       => get_theme_mod('fwbsite_beliefs_page_intro_text'),
+            'items'       => $individual_beliefs,
+            'covenant'    => [
+                'enabled' => get_theme_mod('fwbsite_display_church_covenant'),
+                'title'   => get_theme_mod('fwbsite_church_covenant_title'),
+                'content' => get_theme_mod('fwbsite_church_covenant_content'),
+            ],
+            'partnerships' => [
+                'enabled'      => get_theme_mod('fwbsite_display_partnerships'),
+                'title'        => get_theme_mod('fwbsite_partnerships_title'),
+                'affiliations' => $affiliations,
+            ]
+        ],
+    ];
 
     //belife page data.
 
@@ -125,8 +143,6 @@ add_filter('timber/context', function( $context ) {
             ];
         }
     }
-
-    ];
 
     return $context;
 });
