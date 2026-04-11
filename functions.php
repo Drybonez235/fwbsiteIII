@@ -93,7 +93,7 @@ add_filter('timber/context', function( $context ) {
             'facebook'  => ['url' => get_theme_mod('church_facebook'),  'enabled' => get_theme_mod('church_facebook_enabled')],
             'instagram' => ['url' => get_theme_mod('church_instagram'), 'enabled' => get_theme_mod('church_instagram_enabled')],
             'youtube'   => ['url' => get_theme_mod('church_youtube'),   'enabled' => get_theme_mod('church_youtube_enabled')],
-        ]
+        ],
 
         // Beliefs Page Data
         'beliefs' => [
