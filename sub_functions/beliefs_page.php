@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Your_Theme_Name // Replace with your actual theme name
+ * @package fwbsiteIII // Replace with your actual theme name
  */
 
 // =====================================================================
