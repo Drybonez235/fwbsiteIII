@@ -1,5 +1,5 @@
-<footer class="bg-blue-gray-50 dark:bg-zinc-950 border-t border-black/10 py-12">
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="bg-slate-50 border-t border-slate-200 py-12">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-slate-700">
 
         {# 1. Church Branding #}
         <div class="flex flex-col gap-4">
@@ -9,47 +9,46 @@
                         <img src="{{ custom_logo_url }}" alt="{{ theme.name }}" class="h-16 w-auto">
                     </a>
                 {% else %}
-                    <h1 class="text-2xl/8 font-bold">
+                    <h1 class="text-2xl/8 font-bold text-slate-900">
                         <a href="{{ site.url }}">{{ theme.name }}</a>
                     </h1>
                 {% endif %}
             </div>
-            <p class="text-sm/6 text-gray-600 dark:text-gray-400 italic">
+            <p class="text-sm/6 text-slate-600 italic">
                 {{ theme.mission_statement }}
             </p>
         </div>
 
         {# 2. Service Information #}
         <div class="flex flex-col gap-2 text-base/7">
-            <h3 class="font-bold text-gray-900 dark:text-white mb-2">Service Times</h3>
-            <p>Sunday School: <span class="font-medium">{{ theme.service.sunday_school }}</span></p>
-            <p>Sunday Service: <span class="font-medium">{{ theme.service.sunday_morning }}</span></p>
+            <h3 class="font-bold text-slate-900 mb-2">Service Times</h3>
+            <p>Sunday School: <span class="font-medium text-slate-900">{{ theme.service.sunday_school }}</span></p>
+            <p>Sunday Service: <span class="font-medium text-slate-900">{{ theme.service.sunday_morning }}</span></p>
 
             {% if theme.service.night_enabled %}
-                <p>Sunday Night: <span class="font-medium">{{ theme.service.night_time }}</span></p>
+                <p>Sunday Night: <span class="font-medium text-slate-900">{{ theme.service.night_time }}</span></p>
             {% endif %}
 
             {% if theme.service.wednesday_enabled %}
-                <p>Wednesday Night: <span class="font-medium">{{ theme.service.wednesday_time }}</span></p>
+                <p>Wednesday Night: <span class="font-medium text-slate-900">{{ theme.service.wednesday_time }}</span></p>
             {% endif %}
         </div>
 
         {# 3. Contact & Social #}
         <div class="flex flex-col gap-6">
             <div class="text-base/7">
-                <h3 class="font-bold text-gray-900 dark:text-white mb-2">Contact Us</h3>
+                <h3 class="font-bold text-slate-900 mb-2">Contact Us</h3>
                 <p>
-                    <a href="tel:{{ theme.phone }}" class="hover:text-blue-600 transition-colors">
+                    <a href="tel:{{ theme.phone }}" class="hover:text-blue-600 transition-colors font-medium">
                         {{ theme.phone }}
                     </a>
                 </p>
                 <p>
-                    {# Note: WordPress antispambot is handled via filter if needed, or raw email #}
-                    <a href="mailto:{{ theme.email }}" class="hover:text-blue-600 transition-colors">
+                    <a href="mailto:{{ theme.email }}" class="hover:text-blue-600 transition-colors font-medium">
                         {{ theme.email }}
                     </a>
                 </p>
-                <address class="not-italic mt-2">
+                <address class="not-italic mt-2 text-slate-600">
                     {{ theme.address }}
                 </address>
             </div>
@@ -61,7 +60,7 @@
                         <a href="{{ data.url }}" 
                            target="_blank" 
                            rel="noopener" 
-                           class="text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"
+                           class="text-slate-500 hover:text-blue-600 transition-colors"
                            aria-label="{{ platform | capitalize }}">
                             
                             {% if platform == 'facebook' %}
