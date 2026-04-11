@@ -1,50 +1,99 @@
 {% extends "base.twig" %}
 
 {% block content %}
-{# Header Section #}
-<header class="relative h-64 flex items-center justify-center bg-gray-900">
+{# 1. Hero Section #}
+<header class="relative h-96 flex items-center justify-center bg-gray-900 overflow-hidden">
     {% if theme.beliefs.bg_image %}
-        <img src="{{ theme.beliefs.bg_image }}" class="absolute inset-0 size-full object-cover opacity-50" alt="{{ theme.beliefs.title }}">
+        <img src="{{ theme.beliefs.bg_image }}" 
+             class="absolute inset-0 size-full object-cover opacity-60" 
+             alt="{{ theme.beliefs.title }}">
     {% endif %}
-    <h1 class="relative text-white text-5xl font-bold text-shadow-lg">{{ theme.beliefs.title }}</h1>
+    <div class="relative text-center px-4">
+        <h1 class="text-white text-5xl md:text-6xl font-bold text-shadow-lg uppercase tracking-tight">
+            {{ theme.beliefs.title }}
+        </h1>
+    </div>
 </header>
 
-{# Intro #}
-<section class="max-w-3xl mx-auto py-12 px-4 text-center">
-    <p class="text-lg/8 text-gray-700">{{ theme.beliefs.intro }}</p>
-</section>
+{# 2. Main Content Area with Side Gutter #}
+<div class="max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row gap-12">
+    
+    {# Sticky Navigation Gutter (Desktop) #}
+    <aside class="md:w-64 shrink-0">
+        <nav class="sticky top-8 flex flex-col gap-2 border-l border-gray-200 ml-2">
+            <a href="#beliefs" class="pl-6 py-2 text-lg font-medium text-gray-600 hover:text-blue-600 border-l-2 border-transparent hover:border-blue-600 transition-all">
+                Beliefs
+            </a>
+            <a href="#covenant" class="pl-6 py-2 text-lg font-medium text-gray-600 hover:text-blue-600 border-l-2 border-transparent hover:border-blue-600 transition-all">
+                Covenant
+            </a>
+            <a href="#affiliations" class="pl-6 py-2 text-lg font-medium text-gray-600 hover:text-blue-600 border-l-2 border-transparent hover:border-blue-600 transition-all">
+                Affiliations
+            </a>
+        </nav>
+    </aside>
 
-{# Loop through Beliefs #}
-<section class="max-w-5xl mx-auto py-12 grid gap-8 md:grid-cols-2">
-    {% for belief in theme.beliefs.items %}
-        <div class="p-6 bg-white shadow-sm rounded-xl border border-gray-100">
-            <p class="text-gray-600">{{ belief.content }}</p>
-        </div>
-    {% endfor %}
-</section>
-
-{# Church Covenant #}
-{% if theme.beliefs.covenant.enabled %}
-    <section class="bg-gray-50 py-16">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6">{{ theme.beliefs.covenant.title }}</h2>
-            <div class="prose mx-auto">{{ theme.beliefs.covenant.content|wpautop }}</div>
-        </div>
-    </section>
-{% endif %}
-
-{# Partnerships #}
-{% if theme.beliefs.partnerships.enabled %}
-    <section class="py-16">
-        <h2 class="text-center text-2xl font-bold mb-10">{{ theme.beliefs.partnerships.title }}</h2>
-        <div class="flex flex-wrap justify-center gap-6">
-            {% for partner in theme.beliefs.partnerships.affiliations %}
-                <div class="p-4 border border-gray-200 rounded-sm">
-                    <h3 class="font-bold">{{ partner.name }}</h3>
-                    <p class="text-sm/6">{{ partner.desc }}</p>
+    {# Content Sections #}
+    <main class="flex-1 min-w-0">
+        
+        {# Section: Beliefs #}
+        <section id="beliefs" class="scroll-mt-10 mb-20">
+            <details open class="group">
+                <summary class="flex items-center justify-between p-6 bg-blue-400 text-white rounded-sm cursor-pointer list-none">
+                    <span class="text-2xl font-bold uppercase tracking-wide">Our Beliefs</span>
+                    <svg class="size-8 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </summary>
+                <div class="mt-8 grid gap-6">
+                    {% for belief in theme.beliefs.items %}
+                        <article class="p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
+                            <p class="text-lg/8 text-gray-700">{{ belief.content }}</p>
+                        </article>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
-    </section>
-{% endif %}
+            </details>
+        </section>
+
+        {# Section: Covenant #}
+        {% if theme.beliefs.covenant.enabled %}
+        <section id="covenant" class="scroll-mt-10 mb-20">
+            <details class="group">
+                <summary class="flex items-center justify-between p-6 bg-blue-400 text-white rounded-sm cursor-pointer list-none">
+                    <span class="text-2xl font-bold uppercase tracking-wide">Our Church Covenant</span>
+                    <svg class="size-8 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </summary>
+                <div class="mt-8 prose prose-lg max-w-none px-4 text-gray-700">
+                    {{ theme.beliefs.covenant.content|wpautop }}
+                </div>
+            </details>
+        </section>
+        {% endif %}
+
+        {# Section: Affiliations #}
+        {% if theme.beliefs.partnerships.enabled %}
+        <section id="affiliations" class="scroll-mt-10">
+            <details class="group">
+                <summary class="flex items-center justify-between p-6 bg-blue-400 text-white rounded-sm cursor-pointer list-none">
+                    <span class="text-2xl font-bold uppercase tracking-wide">Affiliations</span>
+                    <svg class="size-8 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </summary>
+                <div class="mt-8 grid gap-4">
+                    {% for partner in theme.beliefs.partnerships.affiliations %}
+                        <div class="p-6 border border-gray-200 rounded-sm hover:bg-gray-50 transition-colors">
+                            <h3 class="text-xl font-bold text-gray-900">{{ partner.name }}</h3>
+                            <p class="text-base/7 text-gray-600 mt-2">{{ partner.desc }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </details>
+        </section>
+        {% endif %}
+
+    </main>
+</div>
 {% endblock %}
