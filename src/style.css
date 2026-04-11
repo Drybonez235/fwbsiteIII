@@ -72,11 +72,11 @@ body {
 }
 
 h1, h2, h3 {
-  color: var(--blue-grey-800);
+  color: var(--blue-grey-300);
 }
 
 a {
-  color: var(--blue-700);
+  color: var(--blue-200);
   text-decoration: none;
 }
 
