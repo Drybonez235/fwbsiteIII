@@ -1,54 +1,60 @@
 {% extends "base.twig" %}
 
 {% block content %}
-{# 1. Hero Section #}
-<header class="relative h-96 flex items-center justify-center bg-gray-900 overflow-hidden">
+{# 1. Hero Section - Increased height to min-h-[500px] #}
+<header class="relative min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden">
     {% if theme.beliefs.bg_image %}
+        {# Using size-full and object-cover per v4.1 rules #}
         <img src="{{ theme.beliefs.bg_image }}" 
              class="absolute inset-0 size-full object-cover opacity-60" 
              alt="{{ theme.beliefs.title }}">
     {% endif %}
     <div class="relative text-center px-4">
-        <h1 class="text-white text-5xl md:text-6xl font-bold text-shadow-lg uppercase tracking-tight">
+        <h1 class="text-white text-5xl md:text-7xl font-bold text-shadow-lg uppercase tracking-tight">
             {{ theme.beliefs.title }}
         </h1>
     </div>
 </header>
 
-{# 2. Main Content Area with Side Gutter #}
-<div class="max-w-7xl mx-auto px-4 py-16 flex flex-col md:flex-row gap-12">
+{# 2. Main Layout #}
+<div class="max-w-7xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-16">
     
-    {# Sticky Navigation Gutter (Desktop) #}
+    {# Sticky Gutter Menu - follow as you scroll #}
     <aside class="md:w-64 shrink-0">
-        <nav class="sticky top-8 flex flex-col gap-2 border-l border-gray-200 ml-2">
-            <a href="#beliefs" class="pl-6 py-2 text-lg font-medium text-gray-600 hover:text-blue-600 border-l-2 border-transparent hover:border-blue-600 transition-all">
+        <nav class="sticky top-10 flex flex-col gap-1 border-l-2 border-gray-100">
+            <a href="#beliefs" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
                 Beliefs
             </a>
-            <a href="#covenant" class="pl-6 py-2 text-lg font-medium text-gray-600 hover:text-blue-600 border-l-2 border-transparent hover:border-blue-600 transition-all">
+            <a href="#covenant" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
                 Covenant
             </a>
-            <a href="#affiliations" class="pl-6 py-2 text-lg font-medium text-gray-600 hover:text-blue-600 border-l-2 border-transparent hover:border-blue-600 transition-all">
+            <a href="#affiliations" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
                 Affiliations
             </a>
         </nav>
     </aside>
 
-    {# Content Sections #}
     <main class="flex-1 min-w-0">
         
         {# Section: Beliefs #}
-        <section id="beliefs" class="scroll-mt-10 mb-20">
+        <section id="beliefs" class="scroll-mt-10 mb-24">
             <details open class="group">
-                <summary class="flex items-center justify-between p-6 bg-blue-400 text-white rounded-sm cursor-pointer list-none">
-                    <span class="text-2xl font-bold uppercase tracking-wide">Our Beliefs</span>
-                    <svg class="size-8 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
+                {# Darker label with a dropdown arrow indicator #}
+                <summary class="flex items-center justify-between p-8 bg-blue-500 text-white rounded-sm cursor-pointer list-none hover:bg-blue-600 transition-colors">
+                    <span class="text-3xl font-bold">Our Beliefs</span>
+                    <span class="text-4xl transition-transform duration-300 group-open:rotate-180">▾</span>
                 </summary>
-                <div class="mt-8 grid gap-6">
+                
+                <div class="mt-12 space-y-12">
                     {% for belief in theme.beliefs.items %}
-                        <article class="p-8 bg-white border border-gray-100 shadow-sm rounded-xl">
-                            <p class="text-lg/8 text-gray-700">{{ belief.content }}</p>
+                        {# Styled to match your reference image #}
+                        <article class="border-b border-gray-300 pb-10 last:border-0">
+                            <h3 class="text-2xl font-black text-gray-900 mb-6 uppercase tracking-wide">
+                                {{ belief.title }}
+                            </h3>
+                            <p class="text-xl/9 font-bold text-gray-600 max-w-4xl">
+                                {{ belief.content }}
+                            </p>
                         </article>
                     {% endfor %}
                 </div>
@@ -57,15 +63,13 @@
 
         {# Section: Covenant #}
         {% if theme.beliefs.covenant.enabled %}
-        <section id="covenant" class="scroll-mt-10 mb-20">
+        <section id="covenant" class="scroll-mt-10 mb-24">
             <details class="group">
-                <summary class="flex items-center justify-between p-6 bg-blue-400 text-white rounded-sm cursor-pointer list-none">
-                    <span class="text-2xl font-bold uppercase tracking-wide">Our Church Covenant</span>
-                    <svg class="size-8 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
+                <summary class="flex items-center justify-between p-8 bg-blue-500 text-white rounded-sm cursor-pointer list-none hover:bg-blue-600 transition-colors">
+                    <span class="text-3xl font-bold">Our Church Covenant</span>
+                    <span class="text-4xl transition-transform duration-300 group-open:rotate-180">▾</span>
                 </summary>
-                <div class="mt-8 prose prose-lg max-w-none px-4 text-gray-700">
+                <div class="mt-12 prose prose-xl max-w-none px-2 text-gray-700 font-medium">
                     {{ theme.beliefs.covenant.content|wpautop }}
                 </div>
             </details>
@@ -76,17 +80,15 @@
         {% if theme.beliefs.partnerships.enabled %}
         <section id="affiliations" class="scroll-mt-10">
             <details class="group">
-                <summary class="flex items-center justify-between p-6 bg-blue-400 text-white rounded-sm cursor-pointer list-none">
-                    <span class="text-2xl font-bold uppercase tracking-wide">Affiliations</span>
-                    <svg class="size-8 transition-transform group-open:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
+                <summary class="flex items-center justify-between p-8 bg-blue-500 text-white rounded-sm cursor-pointer list-none hover:bg-blue-600 transition-colors">
+                    <span class="text-3xl font-bold">Affiliations</span>
+                    <span class="text-4xl transition-transform duration-300 group-open:rotate-180">▾</span>
                 </summary>
-                <div class="mt-8 grid gap-4">
+                <div class="mt-12 grid gap-8">
                     {% for partner in theme.beliefs.partnerships.affiliations %}
-                        <div class="p-6 border border-gray-200 rounded-sm hover:bg-gray-50 transition-colors">
-                            <h3 class="text-xl font-bold text-gray-900">{{ partner.name }}</h3>
-                            <p class="text-base/7 text-gray-600 mt-2">{{ partner.desc }}</p>
+                        <div class="p-8 border-l-4 border-blue-500 bg-gray-50 rounded-r-lg">
+                            <h3 class="text-2xl font-bold text-gray-900">{{ partner.name }}</h3>
+                            <p class="text-lg/8 text-gray-600 mt-3">{{ partner.desc }}</p>
                         </div>
                     {% endfor %}
                 </div>
