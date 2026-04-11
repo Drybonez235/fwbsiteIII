@@ -12,3 +12,4 @@ $context['post'] = Timber::get_post();
 
 // 3. Render the twig file (Timber looks in the /views folder automatically)
 Timber::render( 'beliefs-page.twig', $context );
+

@@ -94,7 +94,7 @@ add_filter('timber/context', function( $context ) {
             'instagram' => ['url' => get_theme_mod('church_instagram'), 'enabled' => get_theme_mod('church_instagram_enabled')],
             'youtube'   => ['url' => get_theme_mod('church_youtube'),   'enabled' => get_theme_mod('church_youtube_enabled')],
         ]
-    ];
+    
 
     //belife page data.
 
@@ -125,6 +125,8 @@ add_filter('timber/context', function( $context ) {
             ];
         }
     }
+
+    ];
 
     return $context;
 });
