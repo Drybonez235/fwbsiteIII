@@ -201,6 +201,24 @@ function fwbsite_customize_beliefs_page( $wp_customize ) {
 
     foreach ( $beliefs as $id_suffix => $belief_data ) {
         $belief_setting_id = 'fwbsite_belief_content_' . $id_suffix;
+        $belief_label_id   = 'fwbsite_belief_label_' . $id_suffix;
+
+        // 1. Add Setting for the LABEL
+    $wp_customize->add_setting($belief_label_id, array(
+        'default'           => $belief_data['label'], // Use your current label as the default
+        'type'              => 'theme_mod',
+        'capability'        => 'edit_theme_options',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+
+    // 2. Add Control for the LABEL (Text input)
+    $wp_customize->add_control($belief_label_id, array(
+        'label'    => sprintf( __( '%s Title', 'fwbsite' ), $belief_data['label'] ),
+        'section'  => $indivdual_beliefs_section_id,
+        'type'     => 'text',
+        'priority' => $priority_counter++, 
+    ));
 
         // Add setting for the belief content
         $wp_customize->add_setting(
