@@ -23,10 +23,16 @@
           <p class="text-sm/6 font-medium uppercase tracking-wide">Sunday School <span class="block text-xl font-bold text-white">{{ theme.service.sunday_school }}</span></p>
           <p class="text-sm/6 font-medium uppercase tracking-wide">Worship <span class="block text-xl font-bold text-white">{{ theme.service.sunday_morning }}</span></p>
         </div>
-        <div class="text-center md:text-right">
-          <p class="text-sm/6 text-stone-300">{{ theme.email }}</p>
+        <div class="text-center md:text-right"> 
+        {% if theme.phone %}
           <p class="text-sm/6 text-stone-300">{{ theme.phone }}</p>
+           {% endif %}
+          {% if theme.email %}
+          <p class="text-sm/6 text-stone-300">{{ theme.email }}</p>
+        {% endif %}
+        {% if theme.address %}
           <p class="text-sm/6 text-stone-300">{{ theme.address }}</p>
+         {% endif %}
         </div>
       </div>
     </div>
