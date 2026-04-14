@@ -63,6 +63,7 @@ add_filter('timber/context', function( $context ) {
     foreach ($belief_keys as $key) {
         $individual_beliefs[] = [
             'id'      => $key,
+            'title'   => $data['label'],
             'content' => get_theme_mod('fwbsite_belief_content_' . $key)
         ];
     }
