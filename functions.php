@@ -59,17 +59,15 @@ add_filter('timber/context', function( $context ) {
         'gospel_ordinances', 'tithing', 'the_christian_sabbath'
     ];
     
-    $individual_beliefs = [];
+   $individual_beliefs = [];
     foreach ($belief_keys as $key) {
-    // Check if the key exists in our master definitions first
-    if (isset($beliefs[$key])) {
         $individual_beliefs[] = [
             'id'      => $key,
-            'title'   => $beliefs[$key]['label'], // Correctly reference the master array
-            'content' => get_theme_mod('fwbsite_belief_content_' . $key, $beliefs[$key]['default'])
+            'title'   => $beliefs[$key]['label'],
+            'content' => get_theme_mod('fwbsite_belief_content_' . $key)
         ];
     }
-}
+    
 
     // Prepare Partnerships array
     $affiliations = [];
