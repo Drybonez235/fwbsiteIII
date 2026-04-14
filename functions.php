@@ -60,15 +60,14 @@ add_filter('timber/context', function( $context ) {
     ];
     
    $individual_beliefs = [];
-    foreach ($beliefs as $key => $data) {
-    $individual_beliefs[] = [
-        'id'      => $key,
-        // Grabs the label from the database, using the 'label' from the array as a fallback
-        'title'   => get_theme_mod('fwbsite_belief_label_' . $key, $data['label']),
-        // Grabs the content from the database, using the 'default' from the array as a fallback
-        'content' => get_theme_mod('fwbsite_belief_content_' . $key, $data['default'])
-    ];
-}
+    foreach ($belief_keys as $key) {
+        $individual_beliefs[] = [
+            'id'      => $key,
+            'title'   => get_theme_mod('fwbsite_belief_label_' . $key, ['label']), 
+        // REACH INTO DATABASE for the content, fallback to the array default
+        'content' => get_theme_mod('fwbsite_belief_content_' . $key, ['default'])
+        ];
+    }
     
 
     // Prepare Partnerships array
