@@ -61,12 +61,15 @@ add_filter('timber/context', function( $context ) {
     
     $individual_beliefs = [];
     foreach ($belief_keys as $key) {
+    // Check if the key exists in our master definitions first
+    if (isset($beliefs[$key])) {
         $individual_beliefs[] = [
             'id'      => $key,
-            'title'   => $belief_keys['label'],
-            'content' => get_theme_mod('fwbsite_belief_content_' . $key)
+            'title'   => $beliefs[$key]['label'], // Correctly reference the master array
+            'content' => get_theme_mod('fwbsite_belief_content_' . $key, $beliefs[$key]['default'])
         ];
     }
+}
 
     // Prepare Partnerships array
     $affiliations = [];

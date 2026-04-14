@@ -36,37 +36,34 @@
 
     <main class="flex-1 min-w-0">
         
-        {# Section: Beliefs #}
        <section id="beliefs" class="scroll-mt-10 mb-24">
     <details open class="group">
-        {# Blue-gray (slate) background with refined padding and rounded-sm per v4 rules #}
-        <summary class="flex items-center justify-between p-6 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
-            {# Scaled font down to text-2xl #}
-            <span class="text-2xl font-bold tracking-tight">Our Beliefs</span>
+        {# Background is Slate (Blue-Gray), Text is now White for contrast #}
+        <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
+            <span class="text-xl font-bold tracking-tight">Our Beliefs</span>
             
-            {# Unfilled Chevron Outline using size-6 (24px) #}
+            {# Smaller, unfilled icon (size-5) with high contrast #}
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 fill="none" 
                 viewBox="0 0 24 24" 
-                stroke-width="2.5" 
+                stroke-width="2" 
                 stroke="currentColor" 
-                class="size-6 transition-transform duration-300 group-open:rotate-180"
+                class="size-5 opacity-80 transition-transform duration-300 group-open:rotate-180"
             >
                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
             </svg>
         </summary>
         
-        {# Using gap-12 instead of space-y for modern flex layout #}
-        <div class="mt-12 flex flex-col gap-12">
+        <div class="mt-10 flex flex-col gap-10">
             {% for belief in theme.beliefs.items %}
-                <article class="border-b border-slate-200 pb-10 last:border-0">
-                    {# Refined header size #}
-                    <h3 class="text-xl font-black text-slate-900 mb-4 uppercase tracking-wider">
+                <article class="border-b border-slate-200 pb-8 last:border-0">
+                    {# Dark Blue-Gray for titles #}
+                    <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
                         {{ belief.title }}
                     </h3>
-                    {# More readable body size with blue-gray text color #}
-                    <p class="text-lg/7 font-medium text-slate-600 max-w-4xl">
+                    {# Stone-600 provides a soft but readable contrast #}
+                    <p class="text-base/7 text-stone-600 max-w-3xl">
                         {{ belief.content }}
                     </p>
                 </article>
