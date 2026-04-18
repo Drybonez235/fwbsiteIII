@@ -327,98 +327,98 @@ function fwbsite_customize_register($wp_customize) {
     */
 
     // Add Section
-    $wp_customize->add_section('church_ministries_section', array(
-        'title'    => __('Church Ministries', 'fwbsite'),
-        'panel'    => 'church_info_panel',
-        'priority' => 40,
-    ));
+    // $wp_customize->add_section('church_ministries_section', array(
+    //     'title'    => __('Church Ministries', 'fwbsite'),
+    //     'panel'    => 'church_info_panel',
+    //     'priority' => 40,
+    // ));
 
-    // -------- Ministry 1 --------
-    $wp_customize->add_setting('ministry1_name', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('ministry1_name', array(
-        'label'   => __('Ministry 1 Name', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'text',
-    ));
+    // // -------- Ministry 1 --------
+    // $wp_customize->add_setting('ministry1_name', array(
+    //     'default' => '',
+    //     'sanitize_callback' => 'sanitize_text_field',
+    // ));
+    // $wp_customize->add_control('ministry1_name', array(
+    //     'label'   => __('Ministry 1 Name', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'text',
+    // ));
 
-    $wp_customize->add_setting('ministry1_description', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('ministry1_description', array(
-        'label'   => __('Ministry 1 Description', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'textarea',
-    ));
+    // $wp_customize->add_setting('ministry1_description', array(
+    //     'default' => '',
+    //     'sanitize_callback' => 'sanitize_textarea_field',
+    // ));
+    // $wp_customize->add_control('ministry1_description', array(
+    //     'label'   => __('Ministry 1 Description', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'textarea',
+    // ));
 
-    // -------- Ministry 2 Toggle --------
-    $wp_customize->add_setting('enable_ministry2', array(
-        'default' => false,
-        'sanitize_callback' => 'rest_sanitize_boolean',
-    ));
-    $wp_customize->add_control('enable_ministry2', array(
-        'label'   => __('Enable Ministry 2', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'checkbox',
-    ));
+    // // -------- Ministry 2 Toggle --------
+    // $wp_customize->add_setting('enable_ministry2', array(
+    //     'default' => false,
+    //     'sanitize_callback' => 'rest_sanitize_boolean',
+    // ));
+    // $wp_customize->add_control('enable_ministry2', array(
+    //     'label'   => __('Enable Ministry 2', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'checkbox',
+    // ));
 
-    // Ministry 2 Name
-    $wp_customize->add_setting('ministry2_name', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('ministry2_name', array(
-        'label'   => __('Ministry 2 Name', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'text',
-    ));
+    // // Ministry 2 Name
+    // $wp_customize->add_setting('ministry2_name', array(
+    //     'default' => '',
+    //     'sanitize_callback' => 'sanitize_text_field',
+    // ));
+    // $wp_customize->add_control('ministry2_name', array(
+    //     'label'   => __('Ministry 2 Name', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'text',
+    // ));
 
-    // Ministry 2 Description
-    $wp_customize->add_setting('ministry2_description', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('ministry2_description', array(
-        'label'   => __('Ministry 2 Description', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'textarea',
-    ));
+    // // Ministry 2 Description
+    // $wp_customize->add_setting('ministry2_description', array(
+    //     'default' => '',
+    //     'sanitize_callback' => 'sanitize_textarea_field',
+    // ));
+    // $wp_customize->add_control('ministry2_description', array(
+    //     'label'   => __('Ministry 2 Description', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'textarea',
+    // ));
 
-    // -------- Ministry 3 Toggle --------
-    $wp_customize->add_setting('enable_ministry3', array(
-        'default' => false,
-        'sanitize_callback' => 'rest_sanitize_boolean',
-    ));
-    $wp_customize->add_control('enable_ministry3', array(
-        'label'   => __('Enable Ministry 3', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'checkbox',
-    ));
+    // // -------- Ministry 3 Toggle --------
+    // $wp_customize->add_setting('enable_ministry3', array(
+    //     'default' => false,
+    //     'sanitize_callback' => 'rest_sanitize_boolean',
+    // ));
+    // $wp_customize->add_control('enable_ministry3', array(
+    //     'label'   => __('Enable Ministry 3', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'checkbox',
+    // ));
 
-    // Ministry 3 Name
-    $wp_customize->add_setting('ministry3_name', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('ministry3_name', array(
-        'label'   => __('Ministry 3 Name', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'text',
-    ));
+    // // Ministry 3 Name
+    // $wp_customize->add_setting('ministry3_name', array(
+    //     'default' => '',
+    //     'sanitize_callback' => 'sanitize_text_field',
+    // ));
+    // $wp_customize->add_control('ministry3_name', array(
+    //     'label'   => __('Ministry 3 Name', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'text',
+    // ));
 
-    // Ministry 3 Description
-    $wp_customize->add_setting('ministry3_description', array(
-        'default' => '',
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('ministry3_description', array(
-        'label'   => __('Ministry 3 Description', 'fwbsite'),
-        'section' => 'church_ministries_section',
-        'type'    => 'textarea',
-    ));
+    // // Ministry 3 Description
+    // $wp_customize->add_setting('ministry3_description', array(
+    //     'default' => '',
+    //     'sanitize_callback' => 'sanitize_textarea_field',
+    // ));
+    // $wp_customize->add_control('ministry3_description', array(
+    //     'label'   => __('Ministry 3 Description', 'fwbsite'),
+    //     'section' => 'church_ministries_section',
+    //     'type'    => 'textarea',
+    // ));
 
     /*
     |--------------------------------------------------------------------------

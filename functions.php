@@ -114,12 +114,15 @@ add_filter('timber/context', function( $context ) {
             'image' => get_theme_mod('pastor_image'),
         ],
 
-        // Ministries (Grouped as an array for easier looping)
-        'ministries' => [
-            ['name' => get_theme_mod('ministry1_name'), 'desc' => get_theme_mod('ministry1_description'), 'enabled' => true],
-            ['name' => get_theme_mod('ministry2_name'), 'desc' => get_theme_mod('ministry2_description'), 'enabled' => get_theme_mod('enable_ministry2')],
-            ['name' => get_theme_mod('ministry3_name'), 'desc' => get_theme_mod('ministry3_description'), 'enabled' => get_theme_mod('enable_ministry3')],
-        ],
+        // Home page Ministries (Grouped as an array for easier looping)
+        // 'ministries' => [
+        //     ['name' => get_theme_mod('ministry1_name'), 'desc' => get_theme_mod('ministry1_description'), 'enabled' => true],
+        //     ['name' => get_theme_mod('ministry2_name'), 'desc' => get_theme_mod('ministry2_description'), 'enabled' => get_theme_mod('enable_ministry2')],
+        //     ['name' => get_theme_mod('ministry3_name'), 'desc' => get_theme_mod('ministry3_description'), 'enabled' => get_theme_mod('enable_ministry3')],
+        // ],
+
+        //Ministries Page ministries
+        'ministries' => [],
 
         // Social Media
         'social' => [
@@ -146,6 +149,21 @@ add_filter('timber/context', function( $context ) {
             ]
         ],
     ];
+
+    // Loop through the 5 ministries defined in your Customizer
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $enabled = get_theme_mod( "fwbsite_ministry_{$i}_enabled", 0 );
+        
+        // Only add to the array if the ministry is enabled
+        if ( $enabled ) {
+            $context['theme']['ministries'][] = [
+                'title'       => get_theme_mod( "fwbsite_ministry_{$i}_title" ),
+                'image'       => get_theme_mod( "fwbsite_ministry_{$i}_image" ),
+                'catchphrase' => get_theme_mod( "fwbsite_ministry_{$i}_catchphrase" ),
+                'details'     => get_theme_mod( "fwbsite_ministry_{$i}_details" ),
+            ];
+        }
+    }
 
     return $context;
 });

@@ -17,7 +17,7 @@ function fwbsite_customize_ministries_page( $wp_customize ) {
 		$wp_customize->add_panel(
 			$ministries_panel_id,
 			array(
-				'title'       => __( 'Ediit Ministries Page', 'fwbsite' ), // Top-level title in the Customizer
+				'title'       => __( 'Edit Ministries Page', 'fwbsite' ), // Top-level title in the Customizer
 				'description' => __( 'Manage the details and display of your church ministries.', 'fwbsite' ),
 				'priority'    => 50, // Adjust priority to position it appropriately (e.g., after Beliefs)
 			)
