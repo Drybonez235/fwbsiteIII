@@ -22,13 +22,13 @@
           {% endif %}
           
           {# Content Container: Scrollable if text exceeds fixed height #}
-          <div class="pl-6 md:pl-8 flex flex-col justify-center overflow-hidden">
+          <div class="pl-6 md:pl-8 mt-4 flex flex-col justify-center overflow-hidden">
             <header>
               <h2 class="text-xl/7 font-bold text-gray-900 dark:text-white mb-2 truncate">
                 {{ ministry.title }}
               </h2>
               {% if ministry.catchphrase %}
-                <span class="block text-xs/4 text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-1">
+                <span class="block text-xs/4 text-blue-600 dark:text-blue-400 tracking-widest mb-1">
                   {{ ministry.catchphrase }}
                 </span>
               {% endif %}
