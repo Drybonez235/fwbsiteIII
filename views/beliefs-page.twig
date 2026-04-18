@@ -36,7 +36,7 @@
 
     <main class="flex-1 min-w-0">
         
-       <section id="beliefs" class="scroll-mt-10 mb-24">
+    <section id="beliefs" class="scroll-mt-10 mb-24">
     <details open class="group">
         {# Background is Slate (Blue-Gray), Text is now White for contrast #}
         <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
@@ -78,11 +78,24 @@
         {% if theme.beliefs.covenant.enabled %}
         <section id="covenant" class="scroll-mt-10 mb-24">
             <details class="group">
-                <summary class="flex items-center justify-between p-8 bg-blue-500 text-white rounded-sm cursor-pointer list-none hover:bg-blue-600 transition-colors">
-                    <span class="text-3xl font-bold">Our Church Covenant</span>
-                    <span class="text-4xl transition-transform duration-300 group-open:rotate-180">▾</span>
-                </summary>
-                <div class="mt-12 prose prose-xl max-w-none px-2 text-gray-700 font-medium">
+                 <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
+            <span class="text-xl font-bold tracking-tight">Church Covenent</span>
+            
+            {# Smaller, unfilled icon (size-5) with high contrast #}
+            <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    stroke-width="2" 
+    stroke="currentColor" 
+    width="20" 
+    height="20" 
+    class="w-5 h-5 opacity-80 transition-transform duration-300 group-open:rotate-180"
+>
+    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+</svg>
+        </summary>
+                <div class="mt-12 prose prose-2xl max-w-none px-2 text-gray-700 font-medium">
                     {{ theme.beliefs.covenant.content|wpautop }}
                 </div>
             </details>
@@ -93,18 +106,31 @@
         {% if theme.beliefs.partnerships.enabled %}
         <section id="affiliations" class="scroll-mt-10">
             <details class="group">
-                <summary class="flex items-center justify-between p-8 bg-blue-500 text-white rounded-sm cursor-pointer list-none hover:bg-blue-600 transition-colors">
-                    <span class="text-3xl font-bold">Affiliations</span>
-                    <span class="text-4xl transition-transform duration-300 group-open:rotate-180">▾</span>
-                </summary>
-                <div class="mt-12 grid gap-8">
-                    {% for partner in theme.beliefs.partnerships.affiliations %}
-                        <div class="p-8 border-l-4 border-blue-500 bg-gray-50 rounded-r-lg">
-                            <h3 class="text-2xl font-bold text-gray-900">{{ partner.name }}</h3>
-                            <p class="text-lg/8 text-gray-600 mt-3">{{ partner.desc }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
+                <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
+            <span class="text-xl font-bold tracking-tight">Church Affiliations</span>
+            
+            {# Smaller, unfilled icon (size-5) with high contrast #}
+            <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    stroke-width="2" 
+    stroke="currentColor" 
+    width="20" 
+    height="20" 
+    class="w-5 h-5 opacity-80 transition-transform duration-300 group-open:rotate-180"
+>
+    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+</svg>
+        </summary>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+    {% for partner in theme.beliefs.partnerships.affiliations %}
+        <div class="py-6 md:py-0 md:px-8 first:pl-0 last:pr-0">
+            <h3 class="text-xl font-bold text-gray-900">{{ partner.name }}</h3>
+            <p class="mt-2 text-base/6 text-gray-600">{{ partner.desc }}</p>
+        </div>
+    {% endfor %}
+</div>
             </details>
         </section>
         {% endif %}
