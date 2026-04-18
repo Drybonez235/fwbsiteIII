@@ -101,21 +101,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </summary>
-                {# Grid Container: 3 Cols on Desktop with minimal dividers #}
-                <div class="mt-10 grid grid-cols-1  gap-y-10 md:divide-x divide-slate-200 px-2">
-                    {% for partner in theme.beliefs.partnerships.affiliations %}
-                            <div class="border-b border-slate-200 pb-4 mt-6 last:border-0 last:pb-0">
-                            <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
-                                {{ partner.name }}
-                            </h3>
-                            {# Use text-base/7 for line-height per v4 rules #}
-                            <p class="text-base/7 text-stone-600 max-w-3xl">
-                                {{ partner.desc }}
-                            </p>
-                        </div>
-                       
-                    {% endfor %}
-                </div>
+               {# Grid Container: 3 Cols on Desktop using gap for consistent internal spacing #}
+<div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-12 px-2">
+    {% for partner in theme.beliefs.partnerships.affiliations %}
+        <div class="flex flex-col">
+            <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
+                {{ partner.name }}
+            </h3>
+            {# Use text-base/7 for line-height per v4 rules #}
+            <p class="text-base/7 text-stone-600">
+                {{ partner.desc }}
+            </p>
+        </div>
+    {% endfor %}
+</div>
             </details>
         </section>
         {% endif %}

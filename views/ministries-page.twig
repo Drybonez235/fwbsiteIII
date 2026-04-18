@@ -4,36 +4,38 @@
 
 <section class="py-16 bg-white dark:bg-gray-950">
   <div class="container mx-auto px-4">
-    <div class="flex flex-col gap-12"> {# Large gap between rows #}
+    {# Main container limited to 3xl for a focused, readable layout #}
+    <div class="flex flex-col gap-12 max-w-3xl mx-auto"> 
       
       {% for ministry in theme.ministries %}
-        <article class="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 rounded-sm overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800">
+        <article class="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 rounded-sm overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 md:h-64">
           
-          {# Image Container: Optimized for Landscape (16:9) #}
+          {# Image Container: Fixed height on mobile, fills container height on desktop #}
           {% if ministry.image %}
-            <div class="w-full md:w-2/5 shrink-0"> {# Using shrink-0 to prevent flex compression #}
+            <div class="w-full md:w-2/5 shrink-0 h-48 md:h-full"> 
               <img 
                 src="{{ ministry.image }}" 
                 alt="{{ ministry.title }}" 
-                class="w-full h-full object-cover aspect-video md:aspect-auto"
+                class="size-full object-cover"
               >
             </div>
           {% endif %}
           
-          {# Content Container #}
-          <div class="p-8 flex flex-col justify-center">
+          {# Content Container: Scrollable if text exceeds fixed height #}
+          <div class="p-6 md:p-8 flex flex-col justify-center overflow-hidden">
             <header>
               {% if ministry.catchphrase %}
-                <span class="block text-sm/5 font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">
+                <span class="block text-xs/4 font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-1">
                   {{ ministry.catchphrase }}
                 </span>
               {% endif %}
-              <h2 class="text-2xl/8 font-bold text-gray-900 dark:text-white mb-4">
+              <h2 class="text-xl/7 font-bold text-gray-900 dark:text-white mb-2 truncate">
                 {{ ministry.title }}
               </h2>
             </header>
             
-            <p class="text-gray-600 dark:text-gray-300 text-base/7 max-w-2xl">
+            {# Using line-height modifier text-base/6 per v4 rules #}
+            <p class="text-gray-600 dark:text-gray-300 text-sm/6 md:text-base/6 line-clamp-3 md:line-clamp-4">
               {{ ministry.details }}
             </p>
           </div>
