@@ -7,13 +7,13 @@
         Ministries of {{ theme.name }}
     </h1>
 
-<section class="py-4 bg-white">
+<section class="">
   <div class="container mx-auto px-4">
     {# Main container limited to 3xl for a focused, readable layout #}
     <div class="flex flex-col gap-12 max-w-3xl mx-auto"> 
       
       {% for ministry in theme.ministries %}
-        <article class="flex flex-col md:flex-row bg-gray-50 rounded-sm overflow-hidden shadow-sm border border-gray-100 md:h-64">
+        <article class="flex flex-col md:flex-row bg-white rounded-sm overflow-hidden shadow-sm border border-gray-100 md:h-64">
           
           {# Image Container: Fixed height on mobile, fills container height on desktop #}
           {% if ministry.image %}
