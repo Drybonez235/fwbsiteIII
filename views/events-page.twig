@@ -10,43 +10,45 @@
     <section class="flex flex-col gap-12">
         {% for event in theme.events %}
             <div class="flex flex-col overflow-hidden rounded-sm bg-white shadow-sm md:flex-row">
-                
-                {# Uniform Image Section #}
-                {% if event.image %}
-                     <div class="w-full md:w-2/5 shrink-0 h-48 md:h-full"> 
-                        <img 
-                            src="{{ event.image }}" 
-                            alt="{{ event.title }}" 
-                            class="size-full object-cover"
-                        >
-                    </div>
-                {% endif %}
-                
-                {# Content Section #}
-                <div class="flex flex-col justify-center p-8 md:w-2/3">
-                    {# Event Title: Bold and prominent #}
-                    <h2 class="text-xl/8 font-black uppercase tracking-wide text-gray-900">
-                        {{ event.title }}
-                    </h2>
-                    
-                    {# Meta Data: Distinct layout for Date and Location #}
-                    <div class="mt-3 mb-3 flex flex-col gap-1 border-b-2 border-gray-200 pl-4">
-                        <div class="flex items-center gap-2">
-                            <p class="text-base/6 text-gray-500">{{ event.date }}</p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <p class="text-base/6 text-gray-500">{{ event.location }}</p>
-                        </div>
-                    </div>
-                    
-                    {# Description #}
-                    {% if event.description %}
-                        <p class="mt-2 text-lg/7 text-gray-600">
-                            {{ event.description }}
-                        </p>
-                    {% endif %}
-                </div>
+    
+    {# Uniform Image Section #}
+    {% if event.image %}
+        {# We use aspect-video on mobile and aspect-square on desktop to lock the dimensions #}
+        <div class="w-full shrink-0 md:w-2/5 aspect-video md:aspect-square"> 
+            <img 
+                src="{{ event.image }}" 
+                alt="{{ event.title }}" 
+                {# size-full (v4) ensures the image fills the locked aspect container #}
+                class="size-full object-cover"
+            >
+        </div>
+    {% endif %}
+
+    {# Content Section #}
+    <div class="flex flex-col justify-center p-8">
+        <h2 class="text-2xl/8 font-black uppercase tracking-wide text-gray-900">
+            {{ event.title }}
+        </h2>
+        
+        <div class="mt-3 flex flex-col gap-1 border-l-4 border-blue-600 pl-4">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">When:</span>
+                <p class="text-base/6 font-semibold text-gray-700">{{ event.date }}</p>
             </div>
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Where:</span>
+                <p class="text-base/6 text-gray-500">{{ event.location }}</p>
+            </div>
+        </div>
+        
+        {% if event.description %}
+            {# line-clamp-4 is a good idea if you want to prevent text from pushing the card too long #}
+            <p class="mt-6 text-lg/7 text-gray-600">
+                {{ event.description }}
+            </p>
+        {% endif %}
+    </div>
+</div>
         {% else %}
             <div class="rounded-sm border-2 border-dashed border-gray-200 py-12 text-center">
                 <p class="text-lg/7 text-gray-500">No upcoming events scheduled at this time.</p>
