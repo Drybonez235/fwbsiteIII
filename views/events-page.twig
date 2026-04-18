@@ -13,12 +13,11 @@
                 
                 {# Uniform Image Section #}
                 {% if event.image %}
-                    <div class="md:w-1/3">
-                        {# aspect-square and object-cover ensure all images are identical in size regardless of original dimensions #}
+                     <div class="w-full md:w-2/5 shrink-0 h-48 md:h-full"> 
                         <img 
                             src="{{ event.image }}" 
                             alt="{{ event.title }}" 
-                            class="aspect-square size-full object-cover"
+                            class="size-full object-cover"
                         >
                     </div>
                 {% endif %}
