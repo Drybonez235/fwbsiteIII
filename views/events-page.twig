@@ -30,18 +30,18 @@
                     </h2>
                     
                     {# Meta Data: Distinct layout for Date and Location #}
-                    <div class="mt-3 flex flex-col gap-1 border-b-1 border-blue-600 pl-4">
+                    <div class="mt-3 mb-3 flex flex-col gap-1 border-b-1 border-blue-600 pl-4">
                         <div class="flex items-center gap-2">
-                            <p class="text-base/6 text-gray-500">{{ event.date }}</p>
+                            <p class="text-base/6 text-gray-400">{{ event.date }}</p>
                         </div>
                         <div class="flex items-center gap-2">
-                            <p class="text-base/6 text-gray-500">{{ event.location }}</p>
+                            <p class="text-base/6 text-gray-400">{{ event.location }}</p>
                         </div>
                     </div>
                     
                     {# Description #}
                     {% if event.description %}
-                        <p class="mt-6 text-lg/7 text-gray-600">
+                        <p class="mt-2 text-lg/7 font-semibold text-gray-600">
                             {{ event.description }}
                         </p>
                     {% endif %}
