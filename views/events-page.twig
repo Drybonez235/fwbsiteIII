@@ -1,33 +1,60 @@
 {% extends "base.twig" %}
 
 {% block content %}
-{# Container focused on a single column with a max-width for readability #}
-<section class="mx-auto flex max-w-4xl flex-col gap-10">
-    {% for event in theme.events %}
-        <div class="flex flex-col overflow-hidden rounded-sm bg-white shadow-sm md:flex-row">
-            {# Image Section - Fixed aspect ratio #}
-            {% if event.image %}
-                <div class="md:w-1/3">
-                    <img src="{{ event.image }}" alt="{{ event.title }}" class="aspect-video size-full object-cover md:aspect-square">
-                </div>
-            {% endif %}
-            
-            {# Content Section #}
-            <div class="flex flex-col justify-center p-6 md:w-2/3">
-                <h3 class="text-xl/7 font-bold text-gray-900">{{ event.title }}</h3>
+<div class="mx-auto max-w-4xl px-4 py-12">
+    {# Main H1 Title #}
+    <h1 class="mb-12 text-center text-4xl/none font-extrabold tracking-tight text-gray-900 md:text-5xl">
+        Events at {{ theme.name }}
+    </h1>
+
+    <section class="flex flex-col gap-12">
+        {% for event in theme.events %}
+            <div class="flex flex-col overflow-hidden rounded-sm bg-white shadow-sm md:flex-row">
                 
-                <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-                    <p class="text-sm/6 font-semibold text-blue-600">{{ event.date }}</p>
-                    <p class="text-sm/6 text-gray-500">{{ event.location }}</p>
-                </div>
-                
-                {% if event.description %}
-                    <p class="mt-4 text-base/6 text-gray-700">{{ event.description }}</p>
+                {# Uniform Image Section #}
+                {% if event.image %}
+                    <div class="md:w-1/3">
+                        {# aspect-square and object-cover ensure all images are identical in size regardless of original dimensions #}
+                        <img 
+                            src="{{ event.image }}" 
+                            alt="{{ event.title }}" 
+                            class="aspect-square size-full object-cover"
+                        >
+                    </div>
                 {% endif %}
+                
+                {# Content Section #}
+                <div class="flex flex-col justify-center p-8 md:w-2/3">
+                    {# Event Title: Bold and prominent #}
+                    <h2 class="text-2xl/8 font-black uppercase tracking-wide text-gray-900">
+                        {{ event.title }}
+                    </h2>
+                    
+                    {# Meta Data: Distinct layout for Date and Location #}
+                    <div class="mt-3 flex flex-col gap-1 border-l-4 border-blue-600 pl-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-blue-600">When:</span>
+                            <p class="text-base/6 font-semibold text-gray-700">{{ event.date }}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Where:</span>
+                            <p class="text-base/6 text-gray-500">{{ event.location }}</p>
+                        </div>
+                    </div>
+                    
+                    {# Description #}
+                    {% if event.description %}
+                        <p class="mt-6 text-lg/7 text-gray-600">
+                            {{ event.description }}
+                        </p>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    {% else %}
-        <p class="text-center text-lg/7 text-gray-500">No upcoming events scheduled at this time.</p>
-    {% endfor %}
-</section>
+        {% else %}
+            <div class="rounded-sm border-2 border-dashed border-gray-200 py-12 text-center">
+                <p class="text-lg/7 text-gray-500">No upcoming events scheduled at this time.</p>
+            </div>
+        {% endfor %}
+    </section>
+</div>
 {% endblock %}

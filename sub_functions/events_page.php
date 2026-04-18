@@ -179,7 +179,7 @@ function church_info_register_events_customizer( $wp_customize ) {
 		$wp_customize->add_control(
 			$date_id,
 			array(
-				'label'   => __( 'Event Date', 'your-textdomain' ), // Label simplified
+				'label'   => __( 'Event Date/Time', 'your-textdomain' ), // Label simplified
 				'section' => $event_section_id, // IMPORTANT: Link to this specific event's section
 				'type'    => 'text',
 			)
