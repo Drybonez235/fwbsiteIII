@@ -48,7 +48,22 @@ add_filter('timber/context', function( $context ) {
     $context['site'] = new Timber\Site();
     $context['custom_logo_url'] = wp_get_attachment_image_url(get_theme_mod('custom_logo'), 'full');
 
-     //belife page data.
+    $events = [];
+    for ( $i = 1; $i <= 5; $i++ ) {
+        $enabled = get_theme_mod( "church_info_event_{$i}_enabled", 0 );
+        
+        // Only add to context if the event is enabled
+        if ( $enabled ) {
+            $events[] = [
+                'title'       => get_theme_mod( "church_info_event_{$i}_title" ),
+                'image'       => get_theme_mod( "church_info_event_{$i}_image" ),
+                'date'        => get_theme_mod( "church_info_event_{$i}_date" ),
+                'location'    => get_theme_mod( "church_info_event_{$i}_location" ),
+                'description' => get_theme_mod( "church_info_event_{$i}_description" ),
+            ];
+        }
+    }
+
 
     // Prepare dynamic individual beliefs array
     $belief_keys = [
@@ -92,6 +107,9 @@ add_filter('timber/context', function( $context ) {
         'phone'              => get_theme_mod('church_phone'),
         'mission_statement'  => get_theme_mod('homepage_mission_statement'),
         'mission_subtext'    => get_theme_mod('mission_subtext'),
+
+        // Events Data (The new binding)
+        'events'             => $events,
 
         // Service Information Section
         'service' => [

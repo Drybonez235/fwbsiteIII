@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<section class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {% for event in theme.events %}
+        <div class="overflow-hidden rounded-sm bg-white shadow-sm">
+            {% if event.image %}
+                <img src="{{ event.image }}" alt="{{ event.title }}" class="aspect-video w-full object-cover">
+            {% endif %}
+            
+            <div class="p-6">
+                <h3 class="text-xl/7 font-bold text-gray-900">{{ event.title }}</h3>
+                <p class="mt-2 text-sm/6 font-semibold text-blue-600">{{ event.date }}</p>
+                <p class="text-sm/6 text-gray-500">{{ event.location }}</p>
+                
+                {% if event.description %}
+                    <p class="mt-4 text-base/6 text-gray-700">{{ event.description }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p class="text-center text-lg/7 text-gray-500">No upcoming events scheduled at this time.</p>
+    {% endfor %}
+</section>
+{% endblock %}
