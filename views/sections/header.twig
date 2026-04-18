@@ -14,7 +14,7 @@
             {% endif %}
         </div>
 
-        <h2 class="text-lg/6 font-semibold text-gray-800 dark:text-gray-200">
+        <h2 class="text-lg/6 font-semibold text-gray-800">
             {{ theme.name }}
         </h2>
     </div>
@@ -24,7 +24,7 @@
         <ul class="flex gap-6 list-none">
             {% for item in menu.items %}
                 <li class="{{ item.classes | join(' ') }}">
-                    <a href="{{ item.link }}" class="text-base/6 font-medium hover:text-blue-600 transition-colors">
+                    <a href="{{ item.link }}" class="text-base/6 uppercase font-medium text-gray-800 hover:text-blue-600 transition-colors">
                         {{ item.title }}
                     </a>
                 </li>
