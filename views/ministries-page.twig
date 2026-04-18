@@ -1,14 +1,19 @@
 {% extends "base.twig" %}
 
 {% block content %}
+<div class="mx-auto max-w-4xl px-4 py-12">
+    {# Main H1 Title #}
+    <h1 class="mb-12 text-center text-4xl/none font-extrabold tracking-tight text-gray-900 md:text-5xl">
+        Ministries of {{ theme.name }}
+    </h1>
 
-<section class="py-16 bg-white dark:bg-gray-950">
+<section class="py-16 bg-white">
   <div class="container mx-auto px-4">
     {# Main container limited to 3xl for a focused, readable layout #}
     <div class="flex flex-col gap-12 max-w-3xl mx-auto"> 
       
       {% for ministry in theme.ministries %}
-        <article class="flex flex-col md:flex-row bg-gray-50 dark:bg-gray-900 rounded-sm overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 md:h-64">
+        <article class="flex flex-col md:flex-row bg-gray-50 rounded-sm overflow-hidden shadow-sm border border-gray-100 md:h-64">
           
           {# Image Container: Fixed height on mobile, fills container height on desktop #}
           {% if ministry.image %}
@@ -24,18 +29,18 @@
           {# Content Container: Scrollable if text exceeds fixed height #}
           <div class="pl-6 md:pl-8 mt-4 flex flex-col justify-center overflow-hidden">
             <header>
-              <h2 class="text-xl/7 font-bold text-gray-900 dark:text-white mb-2 truncate">
+              <h2 class="text-xl/7 font-bold text-gray-900  mb-2 truncate">
                 {{ ministry.title }}
               </h2>
               {% if ministry.catchphrase %}
-                <span class="block text-xs/4 text-blue-600 dark:text-blue-400 tracking-widest mb-1">
+                <span class="block text-xs/4 text-blue-600  tracking-widest mb-1">
                   {{ ministry.catchphrase }}
                 </span>
               {% endif %}
             </header>
             
             {# Using line-height modifier text-base/6 per v4 rules #}
-            <p class="text-gray-600 dark:text-gray-300 text-sm/6 md:text-base/6 line-clamp-3 md:line-clamp-4">
+            <p class="text-gray-600 text-sm/6 md:text-base/6 line-clamp-3 md:line-clamp-4">
               {{ ministry.details }}
             </p>
           </div>
@@ -46,4 +51,5 @@
     </div>
   </div>
 </section>
+</div>
 {% endblock %}
