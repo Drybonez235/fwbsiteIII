@@ -1,15 +1,16 @@
 {% extends "base.twig" %}
 
 {% block content %}
-{# 1. Hero Section - Increased height to min-h-[500px] #}
+{# 1. Hero Section #}
 <header class="relative min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden">
     {% if theme.beliefs.bg_image %}
-        {# Using size-full and object-cover per v4.1 rules #}
+        {# Use size-full per v4.1 rules #}
         <img src="{{ theme.beliefs.bg_image }}" 
              class="absolute inset-0 size-full object-cover opacity-60" 
              alt="{{ theme.beliefs.title }}">
     {% endif %}
     <div class="relative text-center px-4">
+        {# text-shadow-lg is now native in v4.1 #}
         <h1 class="text-white text-5xl md:text-7xl font-bold text-shadow-lg uppercase tracking-tight">
             {{ theme.beliefs.title }}
         </h1>
@@ -19,90 +20,73 @@
 {# 2. Main Layout #}
 <div class="max-w-7xl mx-auto px-4 py-20 flex flex-col md:flex-row gap-16">
     
-    {# Sticky Gutter Menu - follow as you scroll #}
+    {# Sticky Gutter Menu #}
     <aside class="md:w-64 shrink-0">
         <nav class="sticky top-10 flex flex-col gap-1 border-l-2 border-gray-100">
-            <a href="#beliefs" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
-                Beliefs
-            </a>
-            <a href="#covenant" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
-                Covenant
-            </a>
-            <a href="#affiliations" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
-                Affiliations
-            </a>
+            {% set nav_items = [
+                {'id': 'beliefs', 'label': 'Beliefs'},
+                {'id': 'covenant', 'label': 'Covenant', 'show': theme.beliefs.covenant.enabled},
+                {'id': 'affiliations', 'label': 'Affiliations', 'show': theme.beliefs.partnerships.enabled}
+            ] %}
+
+            {% for item in nav_items %}
+                {% if item.show is not defined or item.show %}
+                    <a href="#{{ item.id }}" class="pl-6 py-3 text-lg font-bold text-gray-500 hover:text-blue-600 hover:border-l-2 hover:border-blue-600 transition-all -ml-[2px]">
+                        {{ item.label }}
+                    </a>
+                {% endif %}
+            {% endfor %}
         </nav>
     </aside>
 
     <main class="flex-1 min-w-0">
         
-    <section id="beliefs" class="scroll-mt-10 mb-24">
-    <details open class="group">
-        {# Background is Slate (Blue-Gray), Text is now White for contrast #}
-        <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
-            <span class="text-xl font-bold tracking-tight">Our Beliefs</span>
-            
-            {# Smaller, unfilled icon (size-5) with high contrast #}
-            <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    fill="none" 
-    viewBox="0 0 24 24" 
-    stroke-width="2" 
-    stroke="currentColor" 
-    width="20" 
-    height="20" 
-    class="w-5 h-5 opacity-80 transition-transform duration-300 group-open:rotate-180"
->
-    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-</svg>
-        </summary>
-        
-        <div class="mt-10 flex flex-col gap-10">
-            {% for belief in theme.beliefs.items %}
-                <article class="border-b border-slate-200 pb-8 last:border-0">
-                    {# Dark Blue-Gray for titles #}
-                    <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
-                        {{ belief.title }}
-                    </h3>
-                    {# Stone-600 provides a soft but readable contrast #}
-                    <p class="text-base/7 text-stone-600 max-w-3xl">
-                        {{ belief.content }}
-                    </p>
-                </article>
-            {% endfor %}
-        </div>
-    </details>
-</section>
+        {# Section: Beliefs #}
+        <section id="beliefs" class="scroll-mt-10 mb-24">
+            <details open class="group">
+                <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
+                    <span class="text-xl font-bold tracking-tight">Our Beliefs</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 opacity-80 transition-transform duration-300 group-open:rotate-180">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </summary>
+                
+                <div class="mt-10 flex flex-col gap-10 px-2">
+                    {% for belief in theme.beliefs.items %}
+                        <article class="border-b border-slate-200 pb-8 last:border-0 last:pb-0">
+                            <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
+                                {{ belief.title }}
+                            </h3>
+                            {# Use text-base/7 for line-height per v4 rules #}
+                            <p class="text-base/7 text-stone-600 max-w-3xl">
+                                {{ belief.content }}
+                            </p>
+                        </article>
+                    {% endfor %}
+                </div>
+            </details>
+        </section>
 
         {# Section: Covenant #}
         {% if theme.beliefs.covenant.enabled %}
         <section id="covenant" class="scroll-mt-10 mb-24">
             <details class="group">
-                 <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
-            <span class="text-xl font-bold tracking-tight">Church Covenent</span>
-            
-            {# Smaller, unfilled icon (size-5) with high contrast #}
-            <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    fill="none" 
-    viewBox="0 0 24 24" 
-    stroke-width="2" 
-    stroke="currentColor" 
-    width="20" 
-    height="20" 
-    class="w-5 h-5 opacity-80 transition-transform duration-300 group-open:rotate-180"
->
-    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-</svg>
-        </summary>
-         <article class="border-b border-slate-200 pb-8 last:border-0">
-            <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
-                        The covenent of {{ theme.name }}
-                    </h3>
-                <div class="text-base/7 text-stone-600 max-w-3xl">
-                    {{ theme.beliefs.covenant.content|wpautop }}
+                <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
+                    <span class="text-xl font-bold tracking-tight">Church Covenant</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 opacity-80 transition-transform duration-300 group-open:rotate-180">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </summary>
+                <div class="mt-10 px-2">
+                    <article>
+                        <h3 class="text-lg font-extrabold text-slate-800 mb-3 uppercase tracking-wide">
+                            The Covenant of {{ theme.name }}
+                        </h3>
+                        <div class="text-base/7 text-stone-600 max-w-3xl">
+                            {{ theme.beliefs.covenant.content|wpautop }}
+                        </div>
+                    </article>
                 </div>
-            <article>
             </details>
         </section>
         {% endif %}
@@ -112,30 +96,20 @@
         <section id="affiliations" class="scroll-mt-10">
             <details class="group">
                 <summary class="flex items-center justify-between p-5 bg-slate-700 text-white rounded-sm cursor-pointer list-none hover:bg-slate-800 transition-colors">
-            <span class="text-xl font-bold tracking-tight">Church Affiliations</span>
-            
-            {# Smaller, unfilled icon (size-5) with high contrast #}
-            <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    fill="none" 
-    viewBox="0 0 24 24" 
-    stroke-width="2" 
-    stroke="currentColor" 
-    width="20" 
-    height="20" 
-    class="w-5 h-5 opacity-80 transition-transform duration-300 group-open:rotate-180"
->
-    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-</svg>
-        </summary>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-    {% for partner in theme.beliefs.partnerships.affiliations %}
-        <div class="py-6 md:py-0 md:px-8 first:pl-0 last:pr-0 border-b border-slate-200 ">
-            <h3 class="text-xl font-bold text-gray-900">{{ partner.name }}</h3>
-            <p class="mt-2 text-base/6 text-gray-600 max-w-3xl">{{ partner.desc }}</p>
-        </div>
-    {% endfor %}
-</div>
+                    <span class="text-xl font-bold tracking-tight">Church Affiliations</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-5 opacity-80 transition-transform duration-300 group-open:rotate-180">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </summary>
+                {# Grid Container: 3 Cols on Desktop with minimal dividers #}
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-y-10 md:gap-y-0 md:divide-x divide-slate-200 px-2">
+                    {% for partner in theme.beliefs.partnerships.affiliations %}
+                        <div class="md:px-8 first:pl-0 last:pr-0">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ partner.name }}</h3>
+                            <p class="text-base/6 text-stone-600">{{ partner.desc }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </details>
         </section>
         {% endif %}
