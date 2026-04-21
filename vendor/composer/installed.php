@@ -3,7 +3,7 @@
         'name' => 'jonathanlewis/fwbsite-iii',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '765869a14d3573aa972101b0a6b2ddfff9fbd117',
+        'reference' => '9fc34c5b327e31867c1d5be5dc8077da91ebd9f3',
         'type' => 'plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'jonathanlewis/fwbsite-iii' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '765869a14d3573aa972101b0a6b2ddfff9fbd117',
+            'reference' => '9fc34c5b327e31867c1d5be5dc8077da91ebd9f3',
             'type' => 'plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
