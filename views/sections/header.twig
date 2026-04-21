@@ -1,32 +1,86 @@
-<header class="bg-slate-50 flex flex-col md:flex-row items-center justify-between p-4 lg:p-6 border-b border-black/10">
-    
+<header class="bg-slate-50 flex flex-col md:flex-row items-center justify-between px-6 py-4 lg:px-10 lg:py-5 border-b border-black/10 shadow-sm">
+
     {# Logo and Church Name Wrapper #}
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
         <div class="site-logo">
             {% if custom_logo_url %}
                 <a href="{{ site.url }}">
-                    <img src="{{ custom_logo_url }}" alt="{{ theme.name }}" class="h-12 w-auto">
+                    <img src="{{ custom_logo_url }}" alt="{{ site.name }}" class="h-12 w-auto">
                 </a>
             {% else %}
-                <h1 class="text-xl/7 font-bold">
-                    <a href="{{ site.url }}">{{ theme.name }}</a>
-                </h1>
+                <a href="{{ site.url }}" class="text-xl font-bold text-gray-900 hover:text-black transition-colors">
+                    {{ site.name }}
+                </a>
             {% endif %}
         </div>
-
-        <h2 class="text-lg/6 font-semibold text-gray-800">
-            {{ theme.name }}
-        </h2>
+        {% if custom_logo_url %}
+            <span class="text-lg font-semibold text-gray-800">{{ site.name }}</span>
+        {% endif %}
     </div>
 
     {# Primary Navigation #}
-    <nav class="mt-4 md:mt-0">
-        <ul class="flex gap-6 list-none">
+    <nav class="mt-4 md:mt-0" aria-label="Primary navigation">
+        <ul class="flex flex-wrap gap-1 list-none items-center">
             {% for item in menu.items %}
-                <li class="{{ item.classes | join(' ') }}">
-                    <a href="{{ item.link }}" class="text-base/6 font-medium !text-gray-800 !hover:text-black transition-all hover:scale-110 ">
+                <li class="relative group {{ item.classes | join(' ') }}">
+
+                    {# Top-level link #}
+                    <a href="{{ item.link }}"
+                       class="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-all duration-150
+                              {% if item.current %} text-gray-900 bg-gray-100 {% endif %}">
                         {{ item.title }}
+                        {% if item.children %}
+                            {# Chevron icon for items with children #}
+                            <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600 transition-transform duration-200 group-hover:rotate-180"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        {% endif %}
                     </a>
+
+                    {# Dropdown for child items #}
+                    {% if item.children %}
+                        <ul class="absolute left-0 top-full mt-1 w-52 bg-white rounded-lg shadow-lg border border-black/8 py-1 z-50
+                                   opacity-0 invisible translate-y-1
+                                   group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                                   transition-all duration-200 ease-out
+                                   list-none">
+                            {% for child in item.children %}
+                                <li class="relative group/child {{ child.classes | join(' ') }}">
+                                    <a href="{{ child.link }}"
+                                       class="flex items-center justify-between px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-100
+                                              {% if child.current %} text-gray-900 bg-gray-50 font-medium {% endif %}">
+                                        {{ child.title }}
+                                        {% if child.children %}
+                                            <svg class="w-3.5 h-3.5 text-gray-400 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                            </svg>
+                                        {% endif %}
+                                    </a>
+
+                                    {# Third-level dropdown (grandchildren) #}
+                                    {% if child.children %}
+                                        <ul class="absolute left-full top-0 -mt-1 ml-1 w-48 bg-white rounded-lg shadow-lg border border-black/8 py-1 z-50
+                                                   opacity-0 invisible translate-x-1
+                                                   group-hover/child:opacity-100 group-hover/child:visible group-hover/child:translate-x-0
+                                                   transition-all duration-200 ease-out
+                                                   list-none">
+                                            {% for grandchild in child.children %}
+                                                <li class="{{ grandchild.classes | join(' ') }}">
+                                                    <a href="{{ grandchild.link }}"
+                                                       class="block px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition-colors duration-100
+                                                              {% if grandchild.current %} text-gray-900 bg-gray-50 font-medium {% endif %}">
+                                                        {{ grandchild.title }}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
                 </li>
             {% endfor %}
         </ul>
