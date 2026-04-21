@@ -109,6 +109,13 @@ add_filter('timber/context', function( $context ) {
         'mission_subtext'    => get_theme_mod('mission_subtext'),
 
         // Events Data (The new binding)
+
+        'events' => [
+        'title'      => get_theme_mod('fwbsite_events_page_title', 'Upcoming Events'),
+        'intro'      => get_theme_mod('fwbsite_events_intro_text'),
+        'events_bg' => get_theme_mod('fwbsite_events_page_background_image'),
+        'events_array'    => $events,
+        ],
         
         'events_bg' => get_theme_mod('fwbsite_events_page_background_image'),
         'events'    => $events,
