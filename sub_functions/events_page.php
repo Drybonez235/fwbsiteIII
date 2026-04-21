@@ -69,6 +69,15 @@ function church_info_register_events_customizer( $wp_customize ) {
 	$target_panel      = null;
 	$target_section    = null;
 
+	$events_panel_id = 'church_events_panel';
+    
+    if ( ! $wp_customize->get_panel( $events_panel_id ) ) {
+        $wp_customize->add_panel( $events_panel_id, array(
+            'title'       => __( 'Edit Events Page', 'fwbsite' ),
+            'priority'    => 40,
+        ));
+    }
+
 
 	// --- 1. Add the new Customizer Panel for Events ---
 	$events_panel_id = 'church_events_panel'; // Unique ID for our new panel
