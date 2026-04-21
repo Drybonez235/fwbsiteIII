@@ -63,50 +63,62 @@ function church_info_sanitize_image( $url ) {
  *
  * @param WP_Customize_Manager $wp_customize
  */
-function church_info_register_events_customizer( $wp_customize ) {
-	// Determine where to place the Events section:
-	$events_section_id = 'church_information_events';
-	$target_panel      = null;
-	$target_section    = null;
 
-	$events_panel_id = 'church_events_panel';
-    
+function church_info_register_events_customizer( $wp_customize ) {
+    $events_panel_id = 'church_events_panel';
+
+    // 1. Add the Main Panel
     if ( ! $wp_customize->get_panel( $events_panel_id ) ) {
         $wp_customize->add_panel( $events_panel_id, array(
             'title'       => __( 'Edit Events Page', 'fwbsite' ),
+            'description' => __( 'Manage the display and details of your church events.', 'fwbsite' ),
             'priority'    => 40,
         ));
     }
 
+    // 2. Create the General Section (Required to hold controls)
+    $general_section_id = 'fwbsite_events_general_section';
+    $wp_customize->add_section( $general_section_id, array(
+        'title'    => __( 'General Page Settings', 'fwbsite' ),
+        'panel'    => $events_panel_id,
+        'priority' => 1,
+    ));
 
-	// --- 1. Add the new Customizer Panel for Events ---
-	$events_panel_id = 'church_events_panel'; // Unique ID for our new panel
-	if ( ! $wp_customize->get_panel( $events_panel_id ) ) {
-		$wp_customize->add_panel(
-			$events_panel_id,
-			array(
-				'title'       => __( 'Edit Events Page', 'your-textdomain' ), // This is the top-level title in the Customizer
-				'description' => __( 'Manage the display and details of your church events.', 'your-textdomain' ),
-				'priority'    => 40, // Adjust priority to position it in the customizer
-                               // (e.g., between Ministries (160) and other general settings)
-			)
-		);
-	}
+    // --- Page Title ---
+    $wp_customize->add_setting( 'fwbsite_events_page_title', array(
+        'default'           => 'Upcoming Events',
+        'sanitize_callback' => 'church_info_sanitize_text',
+        'transport'         => 'refresh',
+    ));
+    $wp_customize->add_control( 'fwbsite_events_page_title', array(
+        'label'    => __( 'Custom Page Title', 'fwbsite' ),
+        'section'  => $general_section_id,
+        'type'     => 'text',
+    ));
 
+    // --- Event Intro Text ---
+    $wp_customize->add_setting( 'fwbsite_events_intro_text', array(
+        'default'           => '',
+        'sanitize_callback' => 'church_info_sanitize_textarea',
+        'transport'         => 'refresh',
+    ));
+    $wp_customize->add_control( 'fwbsite_events_intro_text', array(
+        'label'    => __( 'Event Intro Text', 'fwbsite' ),
+        'description' => __( 'A brief description shown below the title.', 'fwbsite' ),
+        'section'  => $general_section_id,
+        'type'     => 'textarea',
+    ));
 
-   // Page Background Image
+    // --- Page Background Image ---
     $wp_customize->add_setting( 'fwbsite_events_page_background_image', array(
         'sanitize_callback' => 'esc_url_raw',
         'type'              => 'theme_mod',
-        'capability'        => 'edit_theme_options',
         'transport'         => 'refresh',
     ));
-
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'fwbsite_events_page_background_image', array(
         'label'       => __( 'Page Background Image', 'fwbsite' ),
-        'section'     => $events_panel_id,
-        'settings'    => 'fwbsite_events_page_background_image', // Fixed: was pointing to beliefs
-        'description' => __( 'Upload a header image for the events page.', 'fwbsite' ),
+        'section'     => $general_section_id,
+        'settings'    => 'fwbsite_events_page_background_image',
     )));
 
 	// Settings prefix
