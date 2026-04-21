@@ -1,56 +1,35 @@
-<header class="bg-white border-b border-gray-100 p-4 lg:px-8 lg:py-5">
-    <div class="mx-auto flex max-w-7xl items-center justify-between">
-        
-        {# Logo & Church Name #}
-        <div class="flex items-center gap-3">
+<header class="bg-slate-50 flex flex-col md:flex-row items-center justify-between p-4 lg:p-6 border-b border-black/10">
+    
+    {# Logo and Church Name Wrapper #}
+    <div class="flex items-center gap-4">
+        <div class="site-logo">
             {% if custom_logo_url %}
-                <a href="{{ site.url }}" class="shrink-0">
-                    <img src="{{ custom_logo_url }}" alt="{{ theme.name }}" class="h-10 w-auto">
+                <a href="{{ site.url }}">
+                    <img src="{{ custom_logo_url }}" alt="{{ theme.name }}" class="h-12 w-auto">
                 </a>
+            {% else %}
+                <h1 class="text-xl/7 font-bold">
+                    <a href="{{ site.url }}">{{ theme.name }}</a>
+                </h1>
             {% endif %}
-            <a href="{{ site.url }}" class="text-lg/6 font-bold text-gray-900">
-                {{ theme.name }}
-            </a>
         </div>
 
-        {# Navigation #}
-        <nav>
-            <ul class="flex items-center gap-6 list-none">
-                {% for item in menu.items %}
-                    <li class="group relative">
-                        {# Desktop Hover / Mobile Click Area #}
-                        <div class="flex items-center gap-1">
-                            <a href="{{ item.link }}" class="text-sm/6 font-medium text-gray-500 transition-colors hover:text-black">
-                                {{ item.title }}
-                            </a>
-
-                            {% if item.children %}
-                                {# Hidden checkbox for mobile toggle logic #}
-                                <input type="checkbox" id="menu-{{ loop.index }}" class="peer hidden" />
-                                
-                                <label for="menu-{{ loop.index }}" class="cursor-pointer text-gray-400 transition-transform group-hover:rotate-180 peer-checked:rotate-180">
-                                    <svg class="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                        <path d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
-                                    </svg>
-                                </label>
-
-                                {# Dropdown Menu #}
-                                <ul class="invisible opacity-0 absolute top-full right-0 z-50 mt-2 min-w-40 border border-gray-100 bg-white py-2 shadow-xs transition-all 
-                                           group-hover:visible group-hover:opacity-100 
-                                           peer-checked:visible peer-checked:opacity-100">
-                                    {% for child in item.children %}
-                                        <li>
-                                            <a href="{{ child.link }}" class="block px-4 py-2 text-sm/5 text-gray-500 hover:bg-gray-50 hover:text-black">
-                                                {{ child.title }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </nav>
+        <h2 class="text-lg/6 font-semibold text-gray-800">
+            {{ theme.name }}
+        </h2>
     </div>
+
+    {# Primary Navigation #}
+    <nav class="mt-4 md:mt-0">
+        <ul class="flex gap-6 list-none">
+            {% for item in menu.items %}
+                <li class="{{ item.classes | join(' ') }}">
+                    <a href="{{ item.link }}" class="text-base/6 font-medium !text-gray-800 !hover:text-black transition-all hover:scale-110 ">
+                        {{ item.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+
 </header>
