@@ -117,8 +117,6 @@ add_filter('timber/context', function( $context ) {
         'events_array'    => $events,
         ],
         
-        'events_bg' => get_theme_mod('fwbsite_events_page_background_image'),
-        'events'    => $events,
         
        
 
