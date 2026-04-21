@@ -109,7 +109,11 @@ add_filter('timber/context', function( $context ) {
         'mission_subtext'    => get_theme_mod('mission_subtext'),
 
         // Events Data (The new binding)
-        'events'             => $events,
+        'events'             => [
+            'events' => $events,
+            'bg_image' => get_theme_mod('fwbsite_events_page_background_image'),
+        
+        ],
 
         // Service Information Section
         'service' => [
@@ -140,7 +144,9 @@ add_filter('timber/context', function( $context ) {
         // ],
 
         //Ministries Page ministries
-        'ministries' => [],
+        'ministries' => [
+
+        ],
 
         // Social Media
         'social' => [
