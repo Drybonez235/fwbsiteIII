@@ -85,28 +85,20 @@ function church_info_register_events_customizer( $wp_customize ) {
 	}
 
 
-    // Background Image
-    $wp_customize->add_setting(
-        'fwbsite_events_page_background_image',
-        array(
-            'sanitize_callback' => 'esc_url_raw',
-            'type'              => 'theme_mod',
-            'capability'        => 'edit_theme_options',
-            'transport'         => 'refresh',
-        )
-    );
-    $wp_customize->add_control(
-        new WP_Customize_Image_Control(
-            $wp_customize,
-            'fwbsite_events_page_background_image',
-            array(
-                'label'       => __( 'Page Background Image', 'fwbsite' ),
-                'section'     => $events_panel_id,
-                'settings'    => 'fwbsite_beliefs_page_background_image',
-                'description' => __( 'Upload an image for the "What We Believe" page header or section.', 'fwbsite' ),
-            )
-        )
-    );
+   // Page Background Image
+    $wp_customize->add_setting( 'fwbsite_events_page_background_image', array(
+        'sanitize_callback' => 'esc_url_raw',
+        'type'              => 'theme_mod',
+        'capability'        => 'edit_theme_options',
+        'transport'         => 'refresh',
+    ));
+
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'fwbsite_events_page_background_image', array(
+        'label'       => __( 'Page Background Image', 'fwbsite' ),
+        'section'     => $events_panel_id,
+        'settings'    => 'fwbsite_events_page_background_image', // Fixed: was pointing to beliefs
+        'description' => __( 'Upload a header image for the events page.', 'fwbsite' ),
+    )));
 
 	// Settings prefix
 	$prefix = 'church_info_event_';

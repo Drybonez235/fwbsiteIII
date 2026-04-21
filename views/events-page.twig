@@ -1,11 +1,22 @@
 {% extends "base.twig" %}
 
 {% block content %}
+{# 1. Hero Section #}
+<header class="relative min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden">
+    {% if theme.events_bg%}
+        {# Use size-full per v4.1 rules #}
+        <img src="{{ theme.events_bg }}" 
+             class="absolute inset-0 size-full object-cover opacity-60" 
+             alt="{{ theme.events_bg }}">
+    {% endif %}
+    <div class="relative text-center px-4">
+        {# text-shadow-lg is now native in v4.1 #}
+        <h1 class="text-white text-5xl md:text-7xl font-serif text-shadow-sm text-shadow-lg tracking-tight">
+            Upcoming events at {{ theme.name }}
+        </h1>
+    </div>
+</header>
 <div class="mx-auto max-w-4xl px-4 py-12">
-    {# Main H1 Title #}
-    <h1 class="mb-12 text-center text-4xl/none font-extrabold tracking-tight text-gray-900 md:text-5xl">
-        Events at {{ theme.name }}
-    </h1>
 
     <section class="flex flex-col gap-12">
         {% for event in theme.events.events %}
