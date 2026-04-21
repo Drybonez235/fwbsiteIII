@@ -3,23 +3,21 @@
 {% block content %}
 {# 1. Hero Section #}
 {# 1. Hero Section #}
-<header class="relative min-h-dvh flex items-center justify-center bg-gray-900 overflow-hidden">
-    {# FIX: Added .events. before events_bg #}
+<header class="relative min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden">
     {% if theme.events.events_bg %}
         <img src="{{ theme.events.events_bg }}" 
-             class="absolute inset-0 size-full object-cover opacity-60" 
+            class="absolute inset-0 size-full object-cover opacity-60" 
              alt="{{ theme.events.title }}">
     {% endif %}
 
-    <div class="relative z-10 text-center px-4">
-        {# FIX: Added .events. before title #}
-        <h1 class="text-white text-5xl/tight md:text-7xl/tight font-serif text-shadow-lg tracking-tight">
+    <div class="relative text-center px-4">
+        <h1 class="!text-white text-5xl md:text-7xl font-bold text-shadow-lg uppercase tracking-tight">
              {{ theme.events.title }}
         </h1>
         
         {# FIX: Added .events. before intro #}
         {% if theme.events.intro %}
-            <p class="mt-4 text-white text-lg/7">{{ theme.events.intro }}</p>
+            <p class="mt-4 text-white text-xl/7">{{ theme.events.intro }}</p>
         {% endif %}
     </div>
 </header>
