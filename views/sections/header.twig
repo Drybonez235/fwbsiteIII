@@ -1,4 +1,4 @@
-<header class="bg-slate-50 flex flex-col md:flex-row items-center justify-between p-4 lg:p-6 border-b border-black/10">
+<header class="bg-slate-50 border-black/10 flex flex-col items-center justify-between border-b p-4 md:flex-row lg:p-6">
     
     {# Logo and Church Name Wrapper #}
     <div class="flex items-center gap-4">
@@ -21,12 +21,34 @@
 
     {# Primary Navigation #}
     <nav class="mt-4 md:mt-0">
-        <ul class="flex gap-6 list-none">
+        <ul class="flex list-none gap-6">
             {% for item in menu.items %}
-                <li class="{{ item.classes | join(' ') }}">
-                    <a href="{{ item.link }}" class="text-base/6 font-medium !text-gray-800 !hover:text-black transition-all hover:scale-110 ">
-                        {{ item.title }}
-                    </a>
+                <li class="group relative {{ item.classes | join(' ') }}">
+                    <div class="flex items-center gap-1">
+                        <a href="{{ item.link }}" class="text-base/6 !hover:text-black font-medium !text-gray-800 transition-all hover:scale-110">
+                            {{ item.title }}
+                        </a>
+                        
+                        {# Show chevron if item has children #}
+                        {% if item.children %}
+                            <span class="size-4 text-gray-500 transition-transform group-hover:rotate-180">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    {# Nested Dropdown #}
+                    {% if item.children %}
+                        <ul class="invisible absolute top-full left-0 z-50 mt-2 min-w-48 rounded-sm bg-white p-2 opacity-0 shadow-sm ring-1 ring-black/5 transition-all group-hover:visible group-hover:opacity-100">
+                            {% for child in item.children %}
+                                <li class="{{ child.classes | join(' ') }}">
+                                    <a href="{{ child.link }}" class="hover:bg-slate-50 block rounded-xs px-4 py-2 text-sm/5 text-gray-700 hover:text-black">
+                                        {{ child.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

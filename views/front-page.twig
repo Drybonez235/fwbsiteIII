@@ -28,7 +28,7 @@
           <p class="text-sm/6 text-stone-300">{{ theme.phone }}</p>
            {% endif %}
           {% if theme.email %}
-          <p class="text-sm/6 text-stone-300">{{ theme.email }}</p>
+          <a href="mailto:{{ theme.email }}" class="text-sm/6 text-stone-300">{{ theme.email }}</a>
         {% endif %}
         {% if theme.address %}
           <p class="text-sm/6 text-stone-300">{{ theme.address }}</p>
