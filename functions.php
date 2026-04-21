@@ -148,11 +148,6 @@ add_filter('timber/context', function( $context ) {
         //     ['name' => get_theme_mod('ministry3_name'), 'desc' => get_theme_mod('ministry3_description'), 'enabled' => get_theme_mod('enable_ministry3')],
         // ],
 
-        //Ministries Page ministries
-        'ministries' => [
-
-        ],
-
         // Social Media
         'social' => [
             'facebook'  => ['url' => get_theme_mod('church_facebook'),  'enabled' => get_theme_mod('church_facebook_enabled')],
@@ -178,6 +173,7 @@ add_filter('timber/context', function( $context ) {
             ]
         ],
     ];
+    
 
     // Loop through the 5 ministries defined in your Customizer
     for ( $i = 1; $i <= 5; $i++ ) {
@@ -193,6 +189,12 @@ add_filter('timber/context', function( $context ) {
             ];
         }
     }
+    // 2. Map the page settings
+    $context['theme']['ministries_page'] = [
+        'title'      => get_theme_mod('fwbsite_ministries_page_title', 'Our Ministries'),
+        'intro'      => get_theme_mod('fwbsite_ministries_intro_text'),
+        'bg'         => get_theme_mod('fwbsite_ministries_page_background_image'),
+    ];
 
     return $context;
 });

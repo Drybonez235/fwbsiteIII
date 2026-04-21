@@ -24,6 +24,49 @@ function fwbsite_customize_ministries_page( $wp_customize ) {
 		);
 	}
 
+	// --- NEW: General Page Settings Section ---
+    $general_section_id = 'fwbsite_ministries_general_section';
+    $wp_customize->add_section( $general_section_id, array(
+        'title'    => __( 'Ministry Title, Image, Intro Settings', 'fwbsite' ),
+        'panel'    => $ministries_panel_id,
+        'priority' => 1, // Appear above the individual ministry details
+    ));
+
+    // Page Title
+    $wp_customize->add_setting( 'fwbsite_ministries_page_title', array(
+        'default'           => 'Our Ministries',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ));
+    $wp_customize->add_control( 'fwbsite_ministries_page_title', array(
+        'label'   => __( 'Custom Page Title', 'fwbsite' ),
+        'section' => $general_section_id,
+        'type'    => 'text',
+    ));
+
+    // Page Intro Text
+    $wp_customize->add_setting( 'fwbsite_ministries_intro_text', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ));
+    $wp_customize->add_control( 'fwbsite_ministries_intro_text', array(
+        'label'   => __( 'Intro Text', 'fwbsite' ),
+        'section' => $general_section_id,
+        'type'    => 'textarea',
+    ));
+
+    // Page Background Image
+    $wp_customize->add_setting( 'fwbsite_ministries_page_background_image', array(
+        'sanitize_callback' => 'esc_url_raw',
+        'transport'         => 'refresh',
+    ));
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'fwbsite_ministries_page_background_image', array(
+        'label'    => __( 'Page Hero Image', 'fwbsite' ),
+        'section'  => $general_section_id,
+        'settings' => 'fwbsite_ministries_page_background_image',
+    )));
+
 	$prefix = 'fwbsite_ministry_'; // Use a new, consistent prefix for clarity
 	$total  = 5;
 

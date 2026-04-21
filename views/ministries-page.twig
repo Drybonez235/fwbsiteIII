@@ -1,12 +1,26 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="mx-auto max-w-4xl px-4 py-12">
-    {# Main H1 Title #}
-    <h1 class="mb-12 text-center text-4xl/none font-extrabold tracking-tight text-gray-900 md:text-5xl">
-        Ministries of {{ theme.name }}
-    </h1>
+{# 1. Hero Section #}
+<header class="relative min-h-[500px] flex items-center justify-center bg-gray-900 overflow-hidden">
+    {% if theme.events.events_bg %}
+        <img src="{{ theme.ministries_page.bg }}" 
+            class="absolute inset-0 size-full object-cover opacity-60" 
+             alt="{{ theme.ministries_page.title }}">
+    {% endif %}
 
+    <div class="relative text-center px-4">
+        <h1 class="!text-white text-5xl md:text-7xl font-serif tracking-tight text-shadow-sm">
+             {{ theme.ministries_page.title }}
+        </h1>
+        
+        {# FIX: Added .events. before intro #}
+        {% if theme.ministries_page.intro%}
+            <p class="mt-4 text-white text-xl/7">{{ theme.ministries_page.intro }}</p>
+        {% endif %}
+    </div>
+</header>
+<div class="mx-auto max-w-4xl px-4 py-12">
 <section class="">
   <div class="container mx-auto px-4">
     {# Main container limited to 3xl for a focused, readable layout #}

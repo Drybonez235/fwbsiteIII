@@ -79,7 +79,7 @@ function church_info_register_events_customizer( $wp_customize ) {
     // 2. Create the General Section (Required to hold controls)
     $general_section_id = 'fwbsite_events_general_section';
     $wp_customize->add_section( $general_section_id, array(
-        'title'    => __( 'General Page Settings', 'fwbsite' ),
+        'title'    => __( 'Edit Title, Image, and Intro', 'fwbsite' ),
         'panel'    => $events_panel_id,
         'priority' => 1,
     ));
