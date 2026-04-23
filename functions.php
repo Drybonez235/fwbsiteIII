@@ -42,6 +42,18 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_style('tailwind-style', get_template_directory_uri() . '/dist/style.css', [], '1.0');
 });
 
+function register_event_post_type() {
+    register_post_type('event', [
+        'labels' => ['name' => 'Events', 'singular_name' => 'Event'],
+        'public' => true,
+        'has_archive' => true, // Allows a list page at /events/
+        'rewrite' => ['slug' => 'events'],
+        'supports' => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'show_in_rest' => true, // Enables the Block Editor (Gutenberg)
+    ]);
+}
+add_action('init', 'register_event_post_type');
+
 // 5. GLOBAL CONTEXT (The Secret Sauce)
 add_filter('timber/context', function( $context ) {
     $context['menu'] = Timber::get_menu('primary');
