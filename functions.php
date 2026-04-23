@@ -210,3 +210,56 @@ add_filter('timber/context', function( $context ) {
 
     return $context;
 });
+
+function church_event_details_box() {
+    add_meta_box(
+        'event_metadata',          // ID of the box
+        'Event Information',       // Title shown to user
+        'render_event_meta_box',   // The function that prints the HTML
+        'event',                   // Post type (your custom event type)
+        'normal',                  // Context (where on screen)
+        'high'                     // Priority
+    );
+}
+add_action('add_meta_boxes', 'church_event_details_box');
+
+function render_event_meta_box($post) {
+    // Add a nonce for security
+    wp_nonce_field('event_meta_save', 'event_meta_nonce');
+
+    // Retrieve existing values from the database
+    $date = get_post_meta($post->ID, '_event_date', true);
+    $time = get_post_meta($post->ID, '_event_time', true);
+
+    echo '<div class="custom-meta-row">';
+    echo '<label for="event_date">Event Date: </label>';
+    echo '<input type="date" id="event_date" name="event_date" value="' . esc_attr($date) . '">';
+    echo '</div>';
+
+    echo '<div class="custom-meta-row" style="margin-top:10px;">';
+    echo '<label for="event_time">Event Time: </label>';
+    echo '<input type="time" id="event_time" name="event_time" value="' . esc_attr($time) . '">';
+    echo '</div>';
+}
+
+function save_event_meta_data($post_id) {
+    // 1. Check security nonce
+    if (!isset($_POST['event_meta_nonce']) || !wp_verify_nonce($_POST['event_meta_nonce'], 'event_meta_save')) {
+        return;
+    }
+
+    // 2. Prevent autosave from overwriting data
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+    // 3. Check user permissions
+    if (!current_user_can('edit_post', $post_id)) return;
+
+    // 4. Sanitize and Save
+    if (isset($_POST['event_date'])) {
+        update_post_meta($post_id, '_event_date', sanitize_text_field($_POST['event_date']));
+    }
+    if (isset($_POST['event_time'])) {
+        update_post_meta($post_id, '_event_time', sanitize_text_field($_POST['event_time']));
+    }
+}
+add_action('save_post', 'save_event_meta_data');
