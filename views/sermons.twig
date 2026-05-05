@@ -1,58 +1,57 @@
-{# sermons-archive.twig #}
-<main class="min-h-dvh bg-neutral-50 py-12 px-4">
-    <div class="max-w-container-3xl mx-auto">
+<!-- Container: Center aligned and using min-h-dvh for mobile safari stability -->
+<div class="min-h-dvh bg-neutral-50 py-12 px-4 font-sans">
+    <div class="max-w-3xl mx-auto text-center">
         
-        <header class="mb-12 border-b border-neutral-200 pb-8">
-            <h1 class="font-display text-4xl/tight font-bold text-neutral-900">Sermon Archive</h1>
-            <p class="text-lg/7 text-neutral-600 mt-2">Listen to recent messages from Northwest Community Church.</p>
+        <header class="mb-16">
+            <h1 class="font-display text-4xl/tight font-bold text-neutral-900 mb-4">Sermon Archive</h1>
+            <div class="size-1.5 bg-gold-500 mx-auto rounded-full"></div>
         </header>
 
         <!-- MONTH SECTION START -->
-        <!-- Repeat this <section> block for each new month -->
-        <section class="mb-16">
-            <div class="flex items-center gap-4 mb-8">
-                <h2 class="font-display text-2xl/6 font-bold text-primary-600 uppercase tracking-wide">
-                    {# TECH TEAM: INPUT MONTH AND YEAR HERE (e.g., MAY 2026) #}
-                    May 2026
-                </h2>
-                <div class="grow h-px bg-primary-200"></div>
-            </div>
+        <!-- Repeat this section for every new month -->
+        <section class="mb-20">
+            <h2 class="font-display text-2xl/6 font-bold text-primary-600 uppercase tracking-widest mb-10 border-b border-neutral-200 pb-4">
+               <!-- {# TECH TEAM: INPUT MONTH AND YEAR (e.g., MAY 2026) #}-->
+                May 2026
+            </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- List of Sermons -->
+            <div class="flex flex-col gap-12">
                 
-                <!-- INDIVIDUAL SERMON CARD START -->
-                <article class="bg-white p-6 rounded-church shadow-sm border border-neutral-100 hover:shadow-md transition-shadow">
-                    <div class="flex flex-col gap-3">
-                        <span class="text-xs font-bold text-gold-700 uppercase tracking-widest">
-                            {# TECH TEAM: INPUT BIBLE VERSE REFERENCE HERE #}
-                            John 3:1-16
-                        </span>
-                        
-                        <h3 class="font-display text-xl/7 font-bold text-neutral-800">
-                            <a href="#" class="hover:text-primary-500 transition-colors">
-                                {# TECH TEAM: INPUT SERMON TITLE HERE #}
-                                The Necessity of Rebirth
-                            </a>
-                        </h3>
+                <!-- INDIVIDUAL SERMON START -->
+                <article class="flex flex-col items-center gap-2">
+                    <time class="text-sm font-bold text-neutral-400 uppercase tracking-wider">
+                       <!-- {# TECH TEAM: INPUT DATE (e.g., May 24, 2026) #-->}-->
+                        May 24, 2026
+                    </time>
+                    
+                    <h3 class="font-display text-2xl/8 font-bold text-neutral-800 hover:text-primary-500 transition-colors">
+                        <a href="#">
+                          <!--  {# TECH TEAM: INPUT SERMON TITLE #}-->
+                            The Strength of Weakness
+                        </a>
+                    </h3>
 
-                        <div class="flex items-center gap-2 mt-2 pt-4 border-t border-neutral-50">
-                            <div class="size-8 bg-neutral-100 rounded-full flex items-center justify-center">
-                                <svg class="size-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                            </div>
-                            <span class="text-sm font-medium text-neutral-600">
-                                {# TECH TEAM: INPUT PASTOR NAME HERE #}
-                                Pastor John Smith
-                            </span>
-                        </div>
+                    <div class="flex items-center gap-3 text-base/6 text-neutral-600">
+                        <span class="italic text-neutral-500">
+                          <!--  {# TECH TEAM: INPUT BIBLE VERSE #-->}
+                            2 Corinthians 12:1-10
+                        </span>
+                        <span class="text-neutral-300">•</span>
+                        <span class="font-medium">
+                          <!--  {# TECH TEAM: INPUT PASTOR NAME #-->}
+                            Pastor John Smith
+                        </span>
                     </div>
                 </article>
-                <!-- INDIVIDUAL SERMON CARD END -->
+                <!-- INDIVIDUAL SERMON END -->
 
-                <!-- Placeholder for next sermon... -->
-                
+                <!-- Divider for the next sermon in the same month -->
+                <hr class="w-12 border-neutral-200 mx-auto">
+
             </div>
         </section>
         <!-- MONTH SECTION END -->
 
     </div>
-</main>
+</div>
