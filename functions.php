@@ -141,9 +141,11 @@ add_filter('timber/context', function( $context ) {
             'sunday_morning'      => get_theme_mod('sunday_service_time'),
             'sunday_morning_desc' => get_theme_mod('sunday_service_description'),
             'night_enabled'       => get_theme_mod('enable_sunday_night'),
+            'night_desc' => get_theme_mod('sunday_night_description'),
             'night_time'          => get_theme_mod('sunday_night_time'),
             'wednesday_enabled'   => get_theme_mod('enable_wednesday_night'),
             'wednesday_time'      => get_theme_mod('wednesday_night_time'),
+            'wednesday_desc'      => get_theme_mod('wednesday_night_description'),
         ],
 
         // Pastor Section

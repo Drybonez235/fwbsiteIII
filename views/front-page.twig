@@ -103,9 +103,9 @@
       <div class="bg-white p-8 flex flex-col justify-between min-h-48 flex-1 min-w-[280px] max-w-sm lg:max-w-xs">
         <div>
           <h4 class="font-bold text-slate-800 uppercase text-xs tracking-widest mb-4">Evening Service</h4>
-          <p class="text-slate-500 text-sm/6 mb-6">A traditional close to the Lord's Day.</p>
+          <p class="text-slate-500 text-sm/6 mb-6">{{ theme.service.night_desc }}</p>
         </div>
-        <span class="text-2xl font-serif text-slate-900">{{ theme.service.sunday_night_time }}</span>
+        <span class="text-2xl font-serif text-slate-900">{{ theme.service.night_time }}</span>
       </div>
       {% endif %}
 
@@ -114,7 +114,7 @@
       <div class="bg-white p-8 flex flex-col justify-between min-h-48 flex-1 min-w-[280px] max-w-sm lg:max-w-xs">
         <div>
           <h4 class="font-bold text-slate-800 uppercase text-xs tracking-widest mb-4">Midweek Prayer</h4>
-          <p class="text-slate-500 text-sm/6 mb-6">Bible study and corporate prayer.</p>
+          <p class="text-slate-500 text-sm/6 mb-6">{{ theme.service.wednesday_desc }}.</p>
         </div>
         <span class="text-2xl font-serif text-slate-900">{{ theme.service.wednesday_night_time }}</span>
       </div>
